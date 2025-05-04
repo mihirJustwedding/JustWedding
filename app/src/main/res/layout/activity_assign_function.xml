@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/headerTitle"
+            layout="@layout/header_layout" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/headerTitle"
+            android:padding="@dimen/_15sdp">
+
+            <RelativeLayout
+                android:id="@+id/relativeTab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_border_round_tab"
+                    android:fillViewport="true"
+                    android:focusableInTouchMode="false"
+                    android:padding="@dimen/_5sdp"
+                    app:tabGravity="fill"
+                    app:tabIndicator="@drawable/bg_round_tab_selected"
+                    app:tabIndicatorAnimationMode="elastic"
+                    app:tabIndicatorColor="@android:color/white"
+                    app:tabIndicatorFullWidth="true"
+                    app:tabIndicatorGravity="stretch"
+                    app:tabIndicatorHeight="50dp"
+                    app:tabInlineLabel="true"
+                    app:tabPadding="@dimen/_10sdp"
+                    app:tabSelectedTextColor="@color/black"
+                    app:tabTextAppearance="@style/MyCustomTextAppearance"
+                    app:tabTextColor="@color/black" />
+
+            </RelativeLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/relativeTab"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal" />
+
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAssign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/nunito_variable"
+            android:text="@string/assign"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text" />
+
+    </RelativeLayout>
+
+</layout>

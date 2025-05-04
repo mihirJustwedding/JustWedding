@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/_10sdp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/mImgFood"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/dummy_food_image"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="@dimen/_2sdp" />
+
+    <TextView
+        android:id="@+id/tvFoodName"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mImgFood"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/nunito_variable"
+        android:gravity="center"
+        android:text="Starter"
+        android:textSize="@dimen/extra_small_text" />
+
+    <ImageView
+        android:id="@+id/imgDot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFoodName"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:src="@drawable/dot_icn" />
+
+</RelativeLayout>

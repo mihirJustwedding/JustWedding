@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottomsheetbackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="@dimen/_13sdp"
+            android:layout_height="@dimen/_13sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:src="@drawable/close_icon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/nunito_variable"
+                android:text="@string/function_name"
+                android:textSize="@dimen/medium_text" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtFunName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/edittext_background"
+                android:focusable="false"
+                android:fontFamily="@font/nunito_variable_italic"
+                android:hint="@string/enter_function_name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:padding="@dimen/_10sdp"
+                android:textColorHint="@color/hint_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/nunito_variable"
+                android:text="@string/date"
+                android:textSize="@dimen/medium_text"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/edittext_background"
+                android:drawableEnd="@drawable/date_icon"
+                android:editable="false"
+                android:fontFamily="@font/nunito_variable_italic"
+                android:hint="@string/dd_mm_yyyy"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_10sdp"
+                android:textColorHint="@color/hint_color"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_variable"
+                        android:text="@string/start_time"
+                        android:textSize="@dimen/medium_text" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtStartTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/edittext_background"
+                        android:drawableEnd="@drawable/time_icon"
+                        android:focusable="false"
+                        android:fontFamily="@font/nunito_variable_italic"
+                        android:hint="@string/hh_mm"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:padding="@dimen/_10sdp"
+                        android:textColorHint="@color/hint_color" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_variable"
+                        android:text="@string/end_time"
+                        android:textSize="@dimen/medium_text" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtEndTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/edittext_background"
+                        android:drawableEnd="@drawable/time_icon"
+                        android:focusable="false"
+                        android:fontFamily="@font/nunito_variable_italic"
+                        android:hint="@string/hh_mm"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:padding="@dimen/_10sdp"
+                        android:textColorHint="@color/hint_color" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/nunito_variable"
+                android:text="@string/venue_name"
+                android:textSize="@dimen/medium_text" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtVenueName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/edittext_background"
+                android:fontFamily="@font/nunito_variable_italic"
+                android:hint="@string/venue_name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:padding="@dimen/_10sdp"
+                android:textColorHint="@color/hint_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/nunito_variable"
+                android:text="@string/number_of_pax"
+                android:textSize="@dimen/medium_text" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtPax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/edittext_background"
+                android:fontFamily="@font/nunito_variable_italic"
+                android:hint="@string/enter_number_of_pax"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:padding="@dimen/_10sdp"
+                android:textColorHint="@color/hint_color" />
+
+            <LinearLayout
+                android:id="@+id/llBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_background"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/add"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/small_text" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/simple_button_background"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/small_text" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

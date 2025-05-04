@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottomsheetbackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="@dimen/_13sdp"
+            android:layout_height="@dimen/_13sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:src="@drawable/close_icon" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/party_name"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtPartName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:hint="@string/party_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/email_address"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:hint="@string/email_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/mobile_number"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:hint="@string/mobile_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/party_address"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtPartyAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:gravity="start"
+                    android:hint="@string/enter_party_address"
+                    android:imeOptions="actionNext"
+                    android:minLines="5"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/birthdate"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtBirthDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:focusable="false"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:hint="@string/birthdate"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/anniversarydate"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtAniDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:focusable="false"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:hint="@string/anniversarydate"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+                <LinearLayout
+                    android:id="@+id/llBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnNext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_background"
+                        android:fontFamily="@font/nunito_variable"
+                        android:text="@string/add"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/small_text" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnBack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/simple_button_background"
+                        android:fontFamily="@font/nunito_variable"
+                        android:text="@string/cancel"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/small_text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

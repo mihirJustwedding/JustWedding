@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/otp_verification"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/Title_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/otp_text"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/medium_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/otp_code"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/medium_text" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.example.justweddingpro.utils.PinViewCRM
+                        android:id="@+id/firstPinView"
+                        style="@style/PinWidget.PinView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="true"
+                        android:inputType="phone"
+                        android:itemBackground="@drawable/pinview_background"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/white"
+                        android:textSize="25sp"
+                        app:cursorColor="@color/black"
+                        app:cursorWidth="2dp"
+                        app:hideLineWhenFilled="true"
+                        app:itemCount="6"
+                        app:itemHeight="@dimen/_45sdp"
+                        app:itemRadius="@dimen/_8sdp"
+                        app:itemSpacing="@dimen/_10sdp"
+                        app:itemWidth="@dimen/_35sdp"
+                        app:lineColor="#00F3E4EF"
+                        app:lineWidth="1dp"
+                        app:viewType="rectangle" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSignin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/button_background"
+                    android:text="@string/verify_amp_proceed"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/small_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="Didn't receive OTP code? Resend OTP?"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/medium_text" />
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/nav_host_fragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/ll_top"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_above="@+id/ll_top"
+                android:background="@color/viewpoint" />
+
+            <LinearLayout
+                android:id="@+id/ll_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp">
+
+
+                <RelativeLayout
+                    android:id="@+id/RlHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:padding="5dp"
+                        android:src="@drawable/home_icon" />
+
+                    <TextView
+                        android:id="@+id/txt1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img1"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/home"
+                        android:textColor="@color/Secondary_color"
+                        android:textSize="@dimen/extra_small_text" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RlEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:padding="5dp"
+                        android:src="@drawable/events_icon" />
+
+                    <TextView
+                        android:id="@+id/txt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img2"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/event"
+                        android:textColor="@color/Secondary_color"
+                        android:textSize="@dimen/extra_small_text" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RlProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/img3"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:padding="5dp"
+                        android:src="@drawable/profile_icons" />
+
+                    <TextView
+                        android:id="@+id/txt3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img3"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/profile"
+                        android:textColor="@color/Secondary_color"
+                        android:textSize="@dimen/extra_small_text" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RlMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/img4"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:padding="5dp"
+                        android:src="@drawable/menu_icon" />
+
+                    <TextView
+                        android:id="@+id/txt4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img4"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/menu"
+                        android:textColor="@color/Secondary_color"
+                        android:textSize="@dimen/extra_small_text" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/addimage"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/_25sdp"
+                android:background="@null"
+                android:src="@drawable/fab_add" />
+
+        </RelativeLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nvView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start">
+
+            <include
+                android:id="@+id/mNavigationLayout"
+                layout="@layout/navigation_layout" />
+
+        </com.google.android.material.navigation.NavigationView>
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</layout>

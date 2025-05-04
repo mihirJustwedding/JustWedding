@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_10sdp"
+    android:background="@drawable/edittext_background"
+    android:padding="@dimen/_10sdp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crdImg"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_centerVertical="true"
+        app:cardCornerRadius="@dimen/_8sdp">
+
+        <ImageView
+            android:id="@+id/mImgFood"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dummy_food_image" />
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/llmain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_toStartOf="@+id/btnStatus"
+        android:layout_toEndOf="@+id/crdImg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTableNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_variable"
+            android:text="TID_05"
+            android:textSize="@dimen/medium_text" />
+
+        <TextView
+            android:id="@+id/tvQnty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/nunito_variable"
+            android:text="5"
+            android:textColor="@color/disable_text_color"
+            android:textSize="@dimen/small_text" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/nunito_variable"
+            android:text="2x Milk Shake,
+3x Chocolate Shake"
+            android:textColor="@color/disable_text_color"
+            android:textSize="@dimen/small_text" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnStatus"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/addtocartbackground"
+        android:backgroundTint="@color/green_color"
+        android:fontFamily="@font/nunito_variable"
+        android:paddingStart="@dimen/_5sdp"
+        android:paddingEnd="@dimen/_5sdp"
+        android:text="Completed"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/extra_small_text"
+        android:visibility="visible" />
+
+</RelativeLayout>

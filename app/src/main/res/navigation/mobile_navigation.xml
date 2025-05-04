@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_advisor">
+
+    <fragment
+        android:id="@+id/navigation_advisor"
+        android:name="com.example.justweddingpro.ui.Fragment.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_calls"
+        android:name="com.example.justweddingpro.ui.Fragment.EventsFragment"
+        android:label="@string/event"
+        tools:layout="@layout/fragment_events" />
+
+
+    <fragment
+        android:id="@+id/navigation_general"
+        android:name="com.example.justweddingpro.ui.Fragment.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.example.justweddingpro.ui.Fragment.MenuFragment"
+        android:label="@string/menu"
+        tools:layout="@layout/fragment_menu" />
+
+    <fragment
+        android:id="@+id/navigation_event_details"
+        android:name="com.example.justweddingpro.ui.Fragment.EventDetailsFragment"
+        android:label="@string/event_details"
+        tools:layout="@layout/fragment_event_details">
+        <action
+            android:id="@+id/action_navigation_event_details_to_navigation_party_details"
+            app:destination="@id/navigation_party_details" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_party_details"
+        android:name="com.example.justweddingpro.ui.Fragment.PartyDetailsFragment"
+        android:label="@string/party_details"
+        tools:layout="@layout/fragment_party_details">
+        <action
+            android:id="@+id/action_navigation_party_details_to_navigation_function_details"
+            app:destination="@id/navigation_function_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_function_details"
+        android:name="com.example.justweddingpro.ui.Fragment.FunctionDetailsFragment"
+        android:label="@string/function_details"
+        tools:layout="@layout/fragment_function_details" />
+
+</navigation>

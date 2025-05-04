@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/llTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/dummy_image"
+                    app:civ_border_overlay="true" />
+
+                <TextView
+                    android:id="@+id/tvUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="lagertha_123"
+                    android:textColor="@color/disable_text_color"
+                    android:textSize="@dimen/small_text" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitosans_bold"
+                    android:text="Lagertha Lothbrok"
+                    android:textSize="@dimen/medium_text" />
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="lagertha.lothbrok@gmail.com"
+                    android:textColor="@color/disable_text_color"
+                    android:textSize="@dimen/small_text" />
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="+91 9988776655"
+                    android:textColor="@color/disable_text_color"
+                    android:textSize="@dimen/small_text" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/manager_background"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:paddingTop="@dimen/_20sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:paddingBottom="@dimen/_20sdp">
+
+                        <TextView
+                            android:id="@+id/tvCompleted"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitosans_bold"
+                            android:gravity="center"
+                            android:text="102"
+                            android:textSize="@dimen/medium_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvCompleted"
+                            android:fontFamily="@font/nunitosans_bold"
+                            android:gravity="center"
+                            android:text="Completed"
+                            android:textColor="@color/disable_text_color"
+                            android:textSize="@dimen/extra_small_text" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/manager_background"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:paddingTop="@dimen/_20sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:paddingBottom="@dimen/_20sdp">
+
+                        <TextView
+                            android:id="@+id/tvPending"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitosans_bold"
+                            android:gravity="center"
+                            android:text="102"
+                            android:textSize="@dimen/medium_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvPending"
+                            android:fontFamily="@font/nunitosans_bold"
+                            android:gravity="center"
+                            android:text="Pending"
+                            android:textColor="@color/disable_text_color"
+                            android:textSize="@dimen/extra_small_text" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/manager_background"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:paddingTop="@dimen/_20sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:paddingBottom="@dimen/_20sdp">
+
+                        <TextView
+                            android:id="@+id/tvTotal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitosans_bold"
+                            android:gravity="center"
+                            android:text="170"
+                            android:textSize="@dimen/medium_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvTotal"
+                            android:fontFamily="@font/nunitosans_bold"
+                            android:gravity="center"
+                            android:text="Total"
+                            android:textColor="@color/disable_text_color"
+                            android:textSize="@dimen/extra_small_text" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSignin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/button_background"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="Edit Profile"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/small_text" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_below="@+id/llTop"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#1A232323" />
+
+            <LinearLayout
+                android:id="@+id/llManage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_variable"
+                    android:padding="@dimen/_10sdp"
+                    android:text="MANAGE"
+                    android:textColor="@color/disable_text_color"
+                    android:textSize="@dimen/medium_text" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Create Manager"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_user_icons" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Calendar"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_cal_icon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Assigned Events"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_event_icn" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Menu for HM"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_menu_icon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Language"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_lang_icon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Feedback"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_feedback_icon" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:fontFamily="@font/nunito_variable"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Dark Mode"
+                            android:textSize="@dimen/medium_text"
+                            app:drawableLeftCompat="@drawable/manager_darkmode_icon" />
+
+                        <Switch
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_alignParentEnd="true"
+                            android:gravity="center_vertical" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="View Feedback"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_viewfeed_icon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Contact Us"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_contact_icon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Disclaimer"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_dis_icon" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Version"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_version_icon" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/btnBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llManage"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/simple_button_background"
+                android:gravity="center"
+                android:padding="@dimen/_15sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/delete_account"
+                    android:textColor="#D62E38"
+                    android:textSize="@dimen/small_text"
+                    app:drawableLeftCompat="@drawable/delete_icon" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

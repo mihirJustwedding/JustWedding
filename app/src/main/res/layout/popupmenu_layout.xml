@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/popup_menu_background"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/tvEdite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:padding="@dimen/_5sdp"
+            android:text="Edit"
+            android:textSize="@dimen/medium_text"
+            app:drawableLeftCompat="@drawable/edite_icon" />
+
+        <TextView
+            android:id="@+id/tvView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:padding="@dimen/_5sdp"
+            android:text="View"
+            android:textSize="@dimen/medium_text"
+            app:drawableStartCompat="@drawable/eye_icn" />
+
+        <TextView
+            android:id="@+id/tvAssignFunc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:padding="@dimen/_5sdp"
+            android:text="Assign Function"
+            android:textSize="@dimen/medium_text"
+            app:drawableStartCompat="@drawable/assign_user_icn" />
+
+        <TextView
+            android:id="@+id/tvPlanning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:padding="@dimen/_5sdp"
+            android:text="Menu Planning"
+            android:textSize="@dimen/medium_text"
+            app:drawableStartCompat="@drawable/menu_icn" />
+
+        <TextView
+            android:id="@+id/tvMenuReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:padding="@dimen/_5sdp"
+            android:text="Menu Reports"
+            android:textSize="@dimen/medium_text"
+            app:drawableStartCompat="@drawable/menu_report_icn" />
+
+        <TextView
+            android:id="@+id/tvWeddingIte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:padding="@dimen/_5sdp"
+            android:text="Wedding Itinerary"
+            android:textSize="@dimen/medium_text"
+            app:drawableStartCompat="@drawable/itenory_icn" />
+
+        <TextView
+            android:id="@+id/tvPdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:padding="@dimen/_5sdp"
+            android:text="View PDF"
+            android:textSize="@dimen/medium_text"
+            app:drawableStartCompat="@drawable/pdf_icn" />
+
+        <TextView
+            android:id="@+id/tvInvoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:padding="@dimen/_5sdp"
+            android:text="Invoice"
+            android:textSize="@dimen/medium_text"
+            app:drawableStartCompat="@drawable/invoice_icn" />
+
+        <TextView
+            android:id="@+id/tvAgency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:padding="@dimen/_5sdp"
+            android:text="Agency Distribution"
+            android:textSize="@dimen/medium_text"
+            app:drawableStartCompat="@drawable/agency_icn" />
+
+        <TextView
+            android:id="@+id/tvDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:padding="@dimen/_5sdp"
+            android:text="Delete"
+            android:textColor="#D62E38"
+            android:textSize="@dimen/medium_text"
+            app:drawableStartCompat="@drawable/delete_icon" />
+
+    </LinearLayout>
+
+</RelativeLayout>

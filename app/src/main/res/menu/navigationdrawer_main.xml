@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/home_icon"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/activity"
+            android:icon="@drawable/activity_icn"
+            android:title="Activity" />
+
+        <item
+            android:id="@+id/orderHistory"
+            android:icon="@drawable/order_icn"
+            android:title="Order History" />
+
+        <item
+            android:id="@+id/navigation_planning"
+            android:icon="@drawable/star_icn"
+            android:title="Rate our application" />
+
+        <item
+            android:id="@+id/feedback"
+            android:icon="@drawable/feedback_icn"
+            android:title="Leve a feedback" />
+
+        <item
+            android:id="@+id/createCaptain"
+            android:icon="@drawable/manager_captain_icon"
+            android:title="Create Captain" />
+
+        <item
+            android:id="@+id/FunctionList"
+            android:icon="@drawable/manager_captain_icon"
+            android:title="Function List" />
+
+    </group>
+
+</menu>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_10sdp"
+    android:background="@drawable/edittext_background"
+    android:padding="@dimen/_10sdp">
+
+    <TextView
+        android:id="@+id/tvFunctionName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/Checkbox"
+        android:padding="@dimen/_10sdp"
+        android:text="Wedding Reception" />
+
+    <CheckBox
+        android:id="@+id/Checkbox"
+        style="@style/CustomCheckboxRound"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>

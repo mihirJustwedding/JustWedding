@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/process" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/_3sdp"
+                        android:layout_height="match_parent"
+                        android:background="@color/Color_Primery" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:text="@string/bride_and_groom_details"
+                        android:textColor="#232323"
+                        android:textSize="@dimen/Large_text" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/bride_name"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtBrideName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:hint="@string/bride_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/groom_name"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtGroomName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:hint="@string/groom_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/food_notes"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtFoodNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:hint="@string/food_note"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/event_remarks"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtEventRemark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:hint="@string/your_event_remarks"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_variable"
+                    android:text="@string/venue_name"
+                    android:textSize="@dimen/medium_text" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtVenueName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/nunito_variable_italic"
+                    android:hint="@string/venue_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textColorHint="@color/hint_color" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>
+

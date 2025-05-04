@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/RlFirst"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/startimage" />
+
+            <ImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:src="@drawable/justwedding_logo" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/RlFirst"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_variable"
+                android:text="@string/get_started_with_your_wonderful_journey"
+                android:textSize="@dimen/header_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/nunito_variable"
+                android:text="@string/it_is_a_long_established_fact_that_a_reader_will_be_distracted_by_the_readable"
+                android:textColor="#232323"
+                android:textSize="@dimen/small_text" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSignin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:background="@drawable/button_background"
+                android:text="@string/signin"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/medium_text" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSignup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/simple_button_background"
+                android:text="@string/create_an_account"
+                android:textAllCaps="false"
+                android:textColor="@color/Color_Primery"
+                android:textSize="@dimen/medium_text" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

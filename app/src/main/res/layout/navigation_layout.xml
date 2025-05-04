@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_30sdp">
+
+            <RelativeLayout
+                android:id="@+id/llTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cimgView"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/dummy_image"
+                    app:civ_border_overlay="true" />
+
+                <LinearLayout
+                    android:id="@+id/llmiddle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_toEndOf="@+id/cimgView"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunitosans_bold"
+                        android:text="Lagertha Lothbrok"
+                        android:textSize="@dimen/medium_text" />
+
+                    <TextView
+                        android:id="@+id/tvUsername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_variable"
+                        android:text="lagertha_123"
+                        android:textColor="@color/disable_text_color"
+                        android:textSize="@dimen/small_text" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:src="@drawable/right_frd_icon"
+                    android:tint="@color/black" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_below="@+id/llTop"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#1A232323" />
+
+            <LinearLayout
+                android:id="@+id/llManage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvCalender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Calendar"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_cal_icon" />
+
+                    <TextView
+                        android:id="@+id/tvAllEvents"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="All Events"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_event_icn" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Availability"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_avaibility_icn" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Menu for HM"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_menu_icon" />
+
+                    <TextView
+                        android:id="@+id/tvFeedback"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Feedback"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_feedback_icon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="View Feedback"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_viewfeed_icon" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_2sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="#1A232323" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Settings"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_setting_icn" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:fontFamily="@font/nunito_variable"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Dark Mode"
+                            android:textSize="@dimen/medium_text"
+                            app:drawableLeftCompat="@drawable/manager_darkmode_icon" />
+
+                        <Switch
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_alignParentEnd="true"
+                            android:gravity="center_vertical" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Language"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_lang_icon" />
+
+                    <TextView
+                        android:id="@+id/tvMAnager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Create Manager"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_user_icons" />
+
+                    <TextView
+                        android:id="@+id/tvCaptain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Create Captain"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_captain_icon" />
+
+                    <TextView
+                        android:id="@+id/tvUserList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Manager and Captain List"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_captain_icon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Choose Templates"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_templete_icon" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_2sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="#1A232323" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="About Us"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/about_alert_icn" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Contact Us"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_contact_icon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Disclaimer"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_dis_icon" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Version"
+                        android:textSize="@dimen/medium_text"
+                        app:drawableLeftCompat="@drawable/manager_version_icon" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/llManage"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_60sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FCF6F6"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunitosans_bold"
+                        android:text="@string/plan_you_wedding_events_easily"
+                        android:textSize="@dimen/medium_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunitosans_bold"
+                        android:text="@string/easily_plan_your_dream_wedding"
+                        android:textColor="@color/disable_text_color"
+                        android:textSize="@dimen/small_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/nunitosans_bold"
+                        android:text="@string/get_started_today"
+                        android:textColor="#D62E38"
+                        android:textSize="@dimen/small_text"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/tvLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardView"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_5sdp"
+                android:fontFamily="@font/nunito_variable"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_15sdp"
+                android:text="Log Out"
+                android:textSize="@dimen/medium_text"
+                app:drawableLeftCompat="@drawable/logout_icon" />
+
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

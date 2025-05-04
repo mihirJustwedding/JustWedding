@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/frdIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/back_arrow" />
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/frdIcon"
+            android:fontFamily="@font/nunito_variable"
+            android:text="Header Title"
+            android:textSize="@dimen/medium_text" />
+
+        <ImageView
+            android:id="@+id/imgPopupMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/popupmenu_icn"
+            android:tint="@color/black"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/imgAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/add_icon"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/btnDownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/nunito_variable"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/download"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

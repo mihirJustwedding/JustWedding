@@ -29,6 +29,9 @@
         tools:ignore="HardcodedDebugMode"
         tools:targetApi="31">
         <activity
+            android:name=".ClientUi.UserTableScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".ClientUi.UserFunctionListActivity"
             android:exported="false" />
         <activity

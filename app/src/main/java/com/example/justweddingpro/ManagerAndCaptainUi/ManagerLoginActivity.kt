@@ -51,6 +51,10 @@ class ManagerLoginActivity : AppCompatActivity() {
                             response.body()?.mData?.clientUserDetails!![0].clientUserId.toString()
                         )
                         PreferenceManager.setPref(
+                            Constants.Preference.PREF_CLIENTID,
+                            response.body()?.mData?.clientUserDetails!![0].clientId.toString()
+                        )
+                        PreferenceManager.setPref(
                             Constants.Preference.Pref_Category,
                             response.body()!!.mData!!.clientUserDetails!![0].category!!
                         )

@@ -11,7 +11,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.justweddingpro.ManagerAndCaptainUi.OrderHistoryActivity
 import com.example.justweddingpro.R
 import com.example.justweddingpro.databinding.ActivityClientHomeBinding
-import com.example.justweddingpro.ui.BasedActivity
 import com.example.justweddingpro.ui.CreateCaptainActivity
 import com.example.justweddingpro.utils.Constants
 import com.example.justweddingpro.utils.PreferenceManager
@@ -54,17 +53,20 @@ class ClientHomeActivity : AppCompatActivity() {
             }
 
             if (item.itemId == R.id.createCaptain) {
-                startActivity(Intent(this, CreateCaptainActivity::class.java))
+                startActivity(Intent(this@ClientHomeActivity, CreateCaptainActivity::class.java))
             }
 
             if (item.itemId == R.id.FunctionList) {
-                startActivity(Intent(this, UserFunctionListActivity::class.java))
+                startActivity(Intent(this@ClientHomeActivity, UserFunctionListActivity::class.java))
             }
             // Close the drawer after selection
             binding.drawerLayout.closeDrawers()
             // Indicate that the item selection has been handled
             true
         })
+
+        if (PreferenceManager.getPref(Constants.Preference.IS_WRITE_PERMISSION, false) == false)
+            binding.nvView.menu.findItem(R.id.createCaptain).setVisible(false)
 
         var mView = binding.nvView.getHeaderView(0)
         var imgClose: ImageView = mView.findViewById(R.id.imgClose)

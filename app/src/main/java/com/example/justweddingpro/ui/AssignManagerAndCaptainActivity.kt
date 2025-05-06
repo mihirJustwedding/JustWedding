@@ -190,7 +190,6 @@ class AssignManagerAndCaptainActivity : BasedActivity() {
                     if (response.isSuccessful) {
                         if (response.body()?.mSuccess!!) {
                             mSelectedList.clear()
-                            finish()
                         } else {
                             Log.d("Mytag", response.body()?.mError!!)
                         }

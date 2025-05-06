@@ -43,6 +43,7 @@
                     android:layout_centerVertical="true"
                     android:fontFamily="@font/nunito_variable"
                     android:text="@string/clear_all"
+                    android:visibility="gone"
                     android:textColor="@color/disable_text_color"
                     android:textSize="@dimen/medium_text" />
 

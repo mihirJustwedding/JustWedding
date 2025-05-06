@@ -10,6 +10,7 @@ import com.example.justweddingpro.ManagerAndCaptainUi.Response.OrderListTableRes
 import com.example.justweddingpro.Network.RequestModel.AddCategoryRequest
 import com.example.justweddingpro.Network.RequestModel.AddEventMenuPlanRequest
 import com.example.justweddingpro.Network.RequestModel.AddEventRequest
+import com.example.justweddingpro.Network.RequestModel.AddFunctionRequest
 import com.example.justweddingpro.Network.RequestModel.AddItemsRequest
 import com.example.justweddingpro.Network.RequestModel.AddPartyRequest
 import com.example.justweddingpro.Network.RequestModel.AddTableRequest
@@ -21,7 +22,6 @@ import com.example.justweddingpro.Network.RequestModel.RegisterRequest
 import com.example.justweddingpro.Response.AddEventResponse
 import com.example.justweddingpro.Response.AddItemsResponse
 import com.example.justweddingpro.Response.AssignFunctionResponse
-import com.example.justweddingpro.Response.AssignTableListResponse
 import com.example.justweddingpro.Response.FunctionDetailsResponse
 import com.example.justweddingpro.Response.LoginResponse
 import com.example.justweddingpro.Response.ManagerListResponse
@@ -29,6 +29,7 @@ import com.example.justweddingpro.Response.MenuCategoryListResponse
 import com.example.justweddingpro.Response.PartyDetailsResponse
 import com.example.justweddingpro.Response.RegisterResponse
 import com.example.justweddingpro.Response.TableListResponse
+import com.example.justweddingpro.ui.Response.AddFunctionResponse
 import com.example.justweddingpro.ui.Response.AddUserResponse
 import com.example.justweddingpro.ui.Response.AssignManagerAndCaptainResponse
 import com.example.justweddingpro.ui.Response.EvenMenuPlanningDetails
@@ -258,10 +259,9 @@ interface ApiInterface {
         @Path("functionid") functionid: String,
     ): Call<ResponseBase<EvenMenuPlanningDetails>>
 
-    @GET(APIConfig.API_GetAssignMenuTable)
-    fun API_GetAssignMenuTable(
-        @Path("clientid") clientid: String,
-        @Path("functionid") functionid: String,
-    ): Call<ResponseBase<AssignTableListResponse>>
+    @POST(APIConfig.API_AddFunctionMaster)
+    fun API_AddFunctionMaster(
+        @Body body: AddFunctionRequest
+    ): Call<ResponseBase<AddFunctionResponse>>
 
 }

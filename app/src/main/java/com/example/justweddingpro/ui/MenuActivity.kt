@@ -121,19 +121,19 @@ class MenuActivity : AppCompatActivity() {
         }
 
         binding.tvPlaceOrder.setOnClickListener {
-            mApiAddEventMenu()
+            mApiAddEventMenu(false, 0)
         }
 
-        binding.mAddItem.setOnClickListener {
-            confirmShowAlertDialog()
+        binding.mAddCategory.setOnClickListener {
+            mAddCategoryFunctionDialog()
         }
 
         binding.tvDopDownText.setOnClickListener {
             mFunctionDialog()
         }
 
-        binding.mAddCategory.setOnClickListener {
-            mAddCategoryFunctionDialog()
+        binding.mAddItem.setOnClickListener {
+            confirmShowAlertDialog()
         }
 
         binding.nestedScroll.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
@@ -382,8 +382,8 @@ class MenuActivity : AppCompatActivity() {
                     }
                 } else {
                     mMenuItemDetailList.clear()
-                    mSelectedItemList?.clear()
-                    mSelectedItemId?.clear()
+//                    mSelectedItemList?.clear()
+//                    mSelectedItemId?.clear()
                     SetItemDetailAdapter(mMenuItemDetailList as List<MenuItemDetailsResponse.MenuItemDetail>)
                     Log.d("Mytag", response.message())
                 }
@@ -417,7 +417,7 @@ class MenuActivity : AppCompatActivity() {
         })
     }
 
-    private fun mApiAddEventMenu() {
+    private fun mApiAddEventMenu(misFunction: Boolean, SelectedFunctionID: Int) {
         CommonUtils.showProgressDialog(this@MenuActivity)
         var mAddEventMenuPlanRequest = AddEventMenuPlanRequest()
         mAddEventMenuPlanRequest.setEventmenuId(0)
@@ -445,8 +445,14 @@ class MenuActivity : AppCompatActivity() {
                     CommonUtils.hideProgressDialog()
                     if (response.isSuccessful) {
                         if (response.body()?.mSuccess!!) {
-                            mSelectedItemList?.clear()
-                            mSelectedItemId?.clear()
+                            if (misFunction) {
+                                PreferenceManager.setPref(
+                                    Constants.Preference.Pref_FunctionId,
+                                    SelectedFunctionID.toString()
+                                )
+                                mSelectedItemList?.clear()
+                                mSelectedItemId?.clear()
+                            }
 
                             mMenuItemDetailList.clear()
                             page = 1
@@ -461,6 +467,17 @@ class MenuActivity : AppCompatActivity() {
                             Log.d("Mytag", response.body()?.mMessage!!)
                         }
                     } else {
+                        if (misFunction) {
+                            PreferenceManager.setPref(
+                                Constants.Preference.Pref_FunctionId,
+                                SelectedFunctionID.toString()
+                            )
+                            mSelectedItemList?.clear()
+                            mSelectedItemId?.clear()
+                        }
+                        mMenuItemDetailList.clear()
+                        page = 1
+                        ApiGetMenuCategoryList()
                         Log.d("Mytag", response.message())
                     }
                 }
@@ -795,11 +812,12 @@ class MenuActivity : AppCompatActivity() {
 
         rvList.layoutManager = linearLayoutManager
         rvList.adapter = mItemAdapter
+
+        var mSelectedFunctionID: Int? = null
+
         mItemAdapter.SetOnclickListner(object : MenuFunctionAdapter.OnclickListner {
             override fun onclick(FunctionID: Int, FunctionName: String, isClick: Boolean) {
-                PreferenceManager.setPref(
-                    Constants.Preference.Pref_FunctionId, FunctionID.toString()
-                )
+                mSelectedFunctionID = FunctionID
 
                 mFunctionName = FunctionName
                 if (!isClick) {
@@ -810,7 +828,7 @@ class MenuActivity : AppCompatActivity() {
 
         btnNext.setOnClickListener {
             binding.tvDopDownText.text = mFunctionName
-            mApiAddEventMenu()
+            mApiAddEventMenu(true, mSelectedFunctionID!!)
             dialog.dismiss()
         }
 

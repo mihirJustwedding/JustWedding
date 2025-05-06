@@ -12,6 +12,7 @@ import com.example.justweddingpro.R
 import com.example.justweddingpro.Response.AddEventResponse
 import com.example.justweddingpro.databinding.ActivityEventCreateBinding
 import com.example.justweddingpro.ui.Fragment.FunctionDetailsFragment
+import com.example.justweddingpro.ui.Fragment.FunctionDetailsFragment.Companion.mFunctionDetailsList
 import com.example.justweddingpro.ui.MyEventDetailsActivity.Companion.mIsEdite
 import com.example.justweddingpro.ui.Response.EventDetailsResponse
 import com.example.justweddingpro.ui.Response.ResponseBase
@@ -77,15 +78,20 @@ class CreateEventActivity : AppCompatActivity() {
         } else if (binding.mViewPagerIntro.currentItem == 1) {
             binding.mViewPagerIntro.currentItem = 2
         } else if (binding.mViewPagerIntro.currentItem == 2) {
+//            if (mIsEdite) {
+//                mEventAddRequest.eventId = PreferenceManager.getPref(
+//                    Constants.Preference.Pref_EVENTId, ""
+//                )!!.toInt()
+//                mApiCalling()
+//            } else {
+            binding.mViewPagerIntro.currentItem = 3
+//            }
+        } else {
             if (mIsEdite) {
                 mEventAddRequest.eventId = PreferenceManager.getPref(
                     Constants.Preference.Pref_EVENTId, ""
                 )!!.toInt()
-                mApiCalling()
-            } else {
-                binding.mViewPagerIntro.currentItem = 3
             }
-        } else {
             mApiCalling()
         }
     }
@@ -144,19 +150,10 @@ class CreateEventActivity : AppCompatActivity() {
                                 mEventDetailsResponse =
                                     response.body()!!.mData!!.getEventMasterDetails()!![0]!!
 
-//                            mEventAddRequest.status = mEventDetailsResponse.status!!
-//                            mEventAddRequest.eventDate = mEventDetailsResponse.eventDate!!
-//                            mEventAddRequest.eventname = mEventDetailsResponse.eventname!!
-//                            mEventAddRequest.partyaccId = mEventDetailsResponse.partyaccId!!
-//                            mEventAddRequest.contactNo = mEventDetailsResponse.contactNo!!
-//                            mEventAddRequest.brideName = mEventDetailsResponse.brideName!!
-//                            mEventAddRequest.groomName = mEventDetailsResponse.groomName!!
-//                            mEventAddRequest.foodNotes = mEventDetailsResponse.foodNotes!!
-//                            mEventAddRequest.eventRemarks = mEventDetailsResponse.eventRemarks!!
-//                            mEventAddRequest.venueName = mEventDetailsResponse.venueName!!
                                 SetAdapter()
+                                mFunctionDetailsList.clear()
                                 mEventDetailsResponse.eventFunctionDetails?.forEachIndexed { index, eventFunctionDetail ->
-                                    FunctionDetailsFragment.mFunctionDetailsList.add(
+                                    mFunctionDetailsList.add(
                                         EventFunctionDetail(
                                             eventFunctionDetail.eventfunctionId!!,
                                             eventFunctionDetail.pax!!,

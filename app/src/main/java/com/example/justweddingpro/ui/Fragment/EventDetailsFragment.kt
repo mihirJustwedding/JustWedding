@@ -113,8 +113,10 @@ class EventDetailsFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                edtStatusName?.setText(spiner?.selectedItem.toString())
-                mStatusId = position
+                if (position != 0) {
+                    edtStatusName?.setText(spiner?.selectedItem.toString())
+                    mStatusId = position - 1
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}

@@ -15,7 +15,6 @@ import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,6 +53,9 @@ class ClientHomeFragment : Fragment() {
     private var mManagerAssignOrderTableList =
         ArrayList<ManagerTableListResponse.ManagerTableAssignDetail>()
 
+    private var mEventId = ""
+    private var mFunctionId = ""
+
     companion object {
         var itemDetailsList: ArrayList<AddOrderRequest.ItemDetail>? = ArrayList()
     }
@@ -86,13 +88,6 @@ class ClientHomeFragment : Fragment() {
 
         mApiGetFunctionList()
 
-        GlobalScope.launch {
-            val dispatcher = this.coroutineContext
-            CoroutineScope(dispatcher).launch {
-                mApiShowOrderTableList()
-            }
-        }
-
         itemDetailsList?.clear()
         binding.btnSignin.setOnClickListener {
             if (itemDetailsList!!.isNotEmpty()) {
@@ -107,28 +102,28 @@ class ClientHomeFragment : Fragment() {
             (requireActivity() as ClientHomeActivity?)?.mOpenDrawer()
         }
 
-        binding.imgPopupMenu.setOnClickListener {
-            val popupMenu = PopupMenu(requireActivity(), binding.imgPopupMenu)
-            popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu())
-            popupMenu.setOnMenuItemClickListener { menuItem ->
-                if (menuItem.title!!.equals("21 Feb")) {
-                    PreferenceManager.setPref(
-                        Constants.Preference.Pref_FunctionId,
-                        "23216"
-                    )
-                    mApiCalling()
-                } else {
-                    PreferenceManager.setPref(
-                        Constants.Preference.Pref_FunctionId,
-                        "23217"
-                    )
-                    mApiCalling()
-                }
-
-                true
-            }
-            popupMenu.show()
-        }
+//        binding.imgPopupMenu.setOnClickListener {
+//            val popupMenu = PopupMenu(requireActivity(), binding.imgPopupMenu)
+//            popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu())
+//            popupMenu.setOnMenuItemClickListener { menuItem ->
+//                if (menuItem.title!!.equals("21 Feb")) {
+//                    PreferenceManager.setPref(
+//                        Constants.Preference.Pref_FunctionId,
+//                        "23216"
+//                    )
+//                    mApiCalling()
+//                } else {
+//                    PreferenceManager.setPref(
+//                        Constants.Preference.Pref_FunctionId,
+//                        "23217"
+//                    )
+//                    mApiCalling()
+//                }
+//
+//                true
+//            }
+//            popupMenu.show()
+//        }
     }
 
     private fun mAddOrderApi(mTableId: String) {
@@ -138,17 +133,11 @@ class ClientHomeFragment : Fragment() {
             PreferenceManager.getPref(Constants.Preference.PREF_CLIENT_USERID, "")?.toInt()
         )
         mADAddOrderRequest.setEventId(
-            PreferenceManager.getPref(
-                Constants.Preference.Pref_EVENTId,
-                ""
-            )?.toInt()
+            mEventId.toInt()
         )
         mADAddOrderRequest.setTableId(mTableId.toInt())
         mADAddOrderRequest.setFunctionId(
-            PreferenceManager.getPref(
-                Constants.Preference.Pref_FunctionId,
-                ""
-            )?.toInt()
+            mFunctionId.toInt()
         )
         mADAddOrderRequest.setItemDetails(itemDetailsList)
 
@@ -208,8 +197,7 @@ class ClientHomeFragment : Fragment() {
     private fun mApiCalling() {
         MyApplication.getRestClient()
             ?.API_Event_Menu_Details(
-                PreferenceManager.getPref(Constants.Preference.Pref_EVENTId, "")!!,
-                PreferenceManager.getPref(Constants.Preference.Pref_FunctionId, "")!!
+                mEventId, mFunctionId
             )
             ?.enqueue(object :
                 Callback<ResponseBase<EventFunctionMenuDetailsResponse>> {
@@ -336,7 +324,8 @@ class ClientHomeFragment : Fragment() {
         MyApplication.getRestClient()
             ?.API_GET_Manager_TableList(
                 PreferenceManager.getPref(Constants.Preference.PREF_CLIENT_USERID, "")!!,
-                PreferenceManager.getPref(Constants.Preference.Pref_FunctionId, "")!!
+                mFunctionId
+
             )
             ?.enqueue(object :
                 Callback<ResponseBase<ManagerTableListResponse>> {
@@ -393,21 +382,15 @@ class ClientHomeFragment : Fragment() {
                 isClick: Boolean
             ) {
 
-                PreferenceManager.setPref(
-                    Constants.Preference.Pref_FunctionId,
-                    FunctionID.toString()
-                )
+                mEventId = EventID.toString()
+                mFunctionId = FunctionID.toString()
 
-                PreferenceManager.setPref(
-                    Constants.Preference.Pref_EVENTId,
-                    EventID.toString()
-                )
-
+                PreferenceManager.setPref(Constants.Preference.Pref_EVENTId, mEventId)!!
+                PreferenceManager.setPref(Constants.Preference.Pref_FunctionId, mFunctionId)!!
+                PreferenceManager.setPref(Constants.Preference.Pref_FunctionName, FunctionName)!!
 
                 mFunctionName = FunctionName
-                if (!isClick) {
-                    binding.tvDopDownText.text = mFunctionName
-                }
+                binding.tvDopDownText.text = mFunctionName
             }
         })
 
@@ -441,19 +424,32 @@ class ClientHomeFragment : Fragment() {
                             response.body()!!.mData?.getFunctionManagerAssignDetails() as List<UpcomingFunctionListResponse.FunctionManagerAssignDetail>
                         )
 
-                        PreferenceManager.setPref(
-                            Constants.Preference.Pref_FunctionId,
-                            response.body()!!.mData?.getFunctionManagerAssignDetails()!![0]?.functionId.toString()
-                        )
-
-                        PreferenceManager.setPref(
-                            Constants.Preference.Pref_EVENTId,
+                        mEventId =
                             response.body()!!.mData?.getFunctionManagerAssignDetails()!![0]?.eventId.toString()
-                        )
+                        mFunctionId =
+                            response.body()!!.mData?.getFunctionManagerAssignDetails()!![0]?.functionId.toString()
 
                         binding.tvDopDownText.setText(
                             response.body()!!.mData?.getFunctionManagerAssignDetails()!![0]?.functionName.toString()
                         )
+
+                        PreferenceManager.setPref(
+                            Constants.Preference.Pref_FunctionName,
+                            response.body()!!.mData?.getFunctionManagerAssignDetails()!![0]?.functionName!!
+                        )
+
+                        PreferenceManager.setPref(Constants.Preference.Pref_EVENTId, mEventId)
+                        PreferenceManager.setPref(
+                            Constants.Preference.Pref_FunctionId,
+                            mFunctionId
+                        )
+
+                        GlobalScope.launch {
+                            val dispatcher = this.coroutineContext
+                            CoroutineScope(dispatcher).launch {
+                                mApiShowOrderTableList()
+                            }
+                        }
 
                         mApiCalling()
 

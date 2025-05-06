@@ -13,7 +13,6 @@ import com.example.justweddingpro.R
 import com.example.justweddingpro.ui.BasedActivity
 import com.example.justweddingpro.ui.Response.EvenMenuPlanningDetails
 import com.example.justweddingpro.ui.Response.ResponseBase
-import com.example.justweddingpro.ui.UserAssignFunctionListActivity
 import com.example.justweddingpro.ui.adapter.ViewMenuPlanningAdapter
 import com.example.justweddingpro.utils.CommonUtils
 import retrofit2.Call

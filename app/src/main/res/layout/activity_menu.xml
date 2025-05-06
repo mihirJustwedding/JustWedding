@@ -40,7 +40,7 @@
                     android:id="@+id/rvMenuLeft"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/mAddItem"
+                    android:layout_above="@+id/mAddCategory"
                     android:layout_below="@+id/llheaderBack"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
@@ -48,7 +48,7 @@
                     tools:listitem="@layout/item_slider_menu" />
 
                 <ImageView
-                    android:id="@+id/mAddItem"
+                    android:id="@+id/mAddCategory"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_alignParentBottom="true"
@@ -86,7 +86,7 @@
                         android:textSize="@dimen/Large_text" />
 
                     <ImageView
-                        android:id="@+id/mAddCategory"
+                        android:id="@+id/mAddItem"
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:layout_alignParentEnd="true"

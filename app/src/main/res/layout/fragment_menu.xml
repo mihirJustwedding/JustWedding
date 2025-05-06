@@ -5,10 +5,29 @@
     android:layout_height="match_parent"
     tools:context=".ui.Fragment.MenuFragment">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:fontFamily="@font/nunito_variable"
+            android:text="Header Title"
+            android:textSize="@dimen/medium_text" />
+
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEventList"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@+id/relativeLayout"
         android:padding="@dimen/_10sdp" />
 
 </RelativeLayout>

@@ -6,13 +6,37 @@
     android:background="@drawable/edittext_background"
     android:padding="@dimen/_10sdp">
 
-    <TextView
-        android:id="@+id/tvFunctionName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toStartOf="@+id/Checkbox"
-        android:padding="@dimen/_10sdp"
-        android:text="Wedding Reception" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvEventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_variable"
+            android:text="Wedding Reception"
+            android:textSize="@dimen/small_text" />
+
+        <TextView
+            android:id="@+id/tvFunctionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitosans_bold"
+            android:text="Wedding Reception"
+            android:textSize="@dimen/medium_text" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_variable"
+            android:text="Wedding Reception"
+            android:textSize="@dimen/small_text" />
+
+    </LinearLayout>
 
     <CheckBox
         android:id="@+id/Checkbox"

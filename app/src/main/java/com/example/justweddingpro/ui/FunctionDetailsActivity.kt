@@ -23,6 +23,9 @@ class FunctionDetailsActivity : BasedActivity() {
         binding = ActivityFunctionDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.headerTitle.headerTitle.setText("Menu Planning")
+        binding.headerTitle.frdIcon.setOnClickListener { onBackPressed() }
+
         binding.btnAssign.setOnClickListener {
             PreferenceManager.setPref(
                 Constants.Preference.Pref_EVENTId, mEventId

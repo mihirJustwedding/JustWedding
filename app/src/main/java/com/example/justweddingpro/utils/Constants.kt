@@ -21,11 +21,14 @@ object Constants {
         const val Pref_Email = "PREF_EMAIL"
         const val Pref_Category = "Pref_Category"
         const val Pref_FunctionId = "Pref_FunctionId"
+        const val Pref_FunctionName = "Pref_FunctionName"
         const val Pref_EVENTId = "Pref_EVENTId"
+        const val PREF_CLIENTID = "PREF_CLIENTID"
 
         const val IS_LOGIN = "IS_LOGIN"
         const val IS_TUTORIAL = "IS_TUTORIAL"
 
         const val IS_WRITE_PERMISSION = "IS_WRITE_PERMISSION"
+
     }
 }

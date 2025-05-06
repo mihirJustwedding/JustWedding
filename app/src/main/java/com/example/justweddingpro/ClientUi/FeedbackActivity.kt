@@ -74,8 +74,15 @@ class FeedbackActivity : AppCompatActivity() {
 
     private fun mAddFeedbackApi() {
         var mFeedBackRequest = FeedBackRequest()
-        mFeedBackRequest.setEventId(PreferenceManager.getPref(Constants.Preference.Pref_EVENTId, "")!!)
-        mFeedBackRequest.setClientId(PreferenceManager.getPref(Constants.Preference.PREF_CLIENT_USERID, "")?.toInt())
+        mFeedBackRequest.setEventId(
+            PreferenceManager.getPref(
+                Constants.Preference.Pref_EVENTId,
+                ""
+            )!!
+        )
+        mFeedBackRequest.setClientId(
+            PreferenceManager.getPref(Constants.Preference.PREF_CLIENTID, "")?.toInt()
+        )
         mFeedBackRequest.setRating(mRating)
         mFeedBackRequest.setPersonName(binding.edtName.text.toString().trim())
         mFeedBackRequest.setMobileNo(binding.edtMobile.text.toString().trim())
@@ -109,7 +116,7 @@ class FeedbackActivity : AppCompatActivity() {
                             response.body()?.mMessage!!,
                             object : CommonUtils.Companion.OnDialogClickListener {
                                 override fun OnYesClick(dialog: Dialog) {
-                                    finish()
+                                    this@FeedbackActivity.finish()
                                 }
 
                                 override fun OnNoClick(dialog: Dialog) {}

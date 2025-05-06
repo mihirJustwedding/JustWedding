@@ -1,5 +1,6 @@
 package com.example.justweddingpro.ClientUi
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +29,6 @@ class UserFunctionListActivity : AppCompatActivity() {
 
         binding.headerTitle.headerTitle.text = "Function List"
         binding.headerTitle.frdIcon.setOnClickListener { onBackPressed() }
-
 
         ApiGetMAnagerList()
     }
@@ -62,7 +62,16 @@ class UserFunctionListActivity : AppCompatActivity() {
                         mItemAdapter.SetOnclickListner(object :
                             ManagerFunctionListAdapter.OnclickListner {
                             override fun onclick(position: Int) {
-
+                                startActivity(
+                                    Intent(
+                                        this@UserFunctionListActivity,
+                                        UserTableScreenActivity::class.java
+                                    ).putExtra(
+                                        "mFunId",
+                                        response.body()!!.mData?.getFunctionManagerAssignDetails()
+                                            ?.get(position)?.functionId.toString()
+                                    )
+                                )
                             }
                         })
 

@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.justweddingpro.ClientUi.Response.UpcomingFunctionListResponse
 import com.example.justweddingpro.R
+import com.example.justweddingpro.utils.CommonUtils
 
 class ClientFunctionListAdapter(
     var mcontext: Context,
@@ -34,7 +35,10 @@ class ClientFunctionListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvFunctionName.text = mList[position].functionName
+        holder.tvFunctionName.text = "Function Name: ${mList[position].functionName}"
+        holder.tvEventName.text = "Event Name: ${mList[position].eventName}"
+        holder.tvDate.text =
+            "Date: ${CommonUtils.parseDateToViewUtcToLocal(mList[position].startTime)}"
 
         //using selector drawable
         holder.Checkbox.isChecked = selectedPosition == position
@@ -65,10 +69,14 @@ class ClientFunctionListAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvFunctionName: TextView
+        var tvEventName: TextView
+        var tvDate: TextView
         var Checkbox: CheckBox
 
         init {
             tvFunctionName = itemView.findViewById(R.id.tvFunctionName)
+            tvEventName = itemView.findViewById(R.id.tvEventName)
+            tvDate = itemView.findViewById(R.id.tvDate)
             Checkbox = itemView.findViewById(R.id.Checkbox)
         }
     }

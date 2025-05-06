@@ -58,7 +58,7 @@ object APIConfig {
     const val API_GetDeleteAssignFunction = "deletefunctionmanagerassignbyid/{managerid}/"
     const val API_GetUpcomingFunction = "getupcommingfunctionmanagerassignbyclientId/{clientid}/"
     const val API_GetMenuPlanningDetails = "geteventmenuplandetailsbyeventandfunctionid/{eventid}/{functionid}/"
-    const val API_GetAssignMenuTable = "getmanagertableassignbyclientandfunctionid/{clientid}/{functionid}/"
+    const val API_AddFunctionMaster = "addfunctionmaster/"
 
     /*Api Keys*/
     object ApiConst {

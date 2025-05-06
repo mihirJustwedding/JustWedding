@@ -19,6 +19,8 @@ class ManagerAndCaptainListActivity : BasedActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityManagerAndCaptainListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.headerTitle.headerTitle.text = "Users List"
+        binding.headerTitle.frdIcon.setOnClickListener { onBackPressed() }
 
         Tabview()
     }

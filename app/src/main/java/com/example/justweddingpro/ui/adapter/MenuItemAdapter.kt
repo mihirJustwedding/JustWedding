@@ -80,8 +80,18 @@ class MenuItemAdapter(
             } else {
                 holder.mAddIcon.setImageResource(R.drawable.add_icon)
                 mList[position].setIsSelected(false)
-                mSelectedItemList!!.removeAt(position)
-                mSelectedItemId!!.removeAt(position)
+                for (i in 0 until mSelectedItemList?.size!!) {
+                    if (mSelectedItemList!![i].getItemId() == mEventMenuPlanDetail.getItemId()) {
+                        mSelectedItemList!!.removeAt(i)
+                        break
+                    }
+                }
+//                mSelectedItemList?.forEach {
+//                    if (it.getItemId() == mEventMenuPlanDetail.getItemId()) {
+//                        mSelectedItemList!!.remove(it)
+//                    }
+//                }
+                mSelectedItemId!!.remove(mEventMenuPlanDetail.getItemId().toString())
             }
             AddTotalItem()
         }
@@ -100,7 +110,7 @@ class MenuItemAdapter(
 
     private fun AddTotalItem() {
 //        if (mSelectedItemId?.isNotEmpty()!!) {
-            onSelectedListner.onselected(mSelectedItemId!!.size)
+        onSelectedListner.onselected(mSelectedItemId!!.size)
 //        }
     }
 

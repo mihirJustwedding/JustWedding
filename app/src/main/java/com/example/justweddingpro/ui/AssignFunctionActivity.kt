@@ -34,10 +34,23 @@ class AssignFunctionActivity : BasedActivity() {
         binding = ActivityAssignFunctionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.headerTitle.headerTitle.setText("Function List")
+        binding.headerTitle.frdIcon.setOnClickListener { onBackPressed() }
+
         Tabview()
 
         binding.btnAssign.setOnClickListener {
             ApiGetManagerAssign()
+        }
+
+        binding.btnNext.setOnClickListener {
+            finish()
+            startActivity(
+                Intent(
+                    this@AssignFunctionActivity,
+                    AssignManagerAndCaptainActivity::class.java
+                )
+            )
         }
     }
 

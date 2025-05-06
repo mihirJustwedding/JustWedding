@@ -35,6 +35,16 @@
                 android:text="Wedding Reception"
                 android:textSize="@dimen/Extra_Large_text" />
 
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:src="@drawable/eye_icn" />
+
         </RelativeLayout>
 
         <View

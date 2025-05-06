@@ -1,16 +1,22 @@
 package com.example.justweddingpro.ManagerAndCaptainUi
 
+import android.app.Dialog
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.crmapplication.MyApplication
 import com.example.justweddingpro.ClientUi.Request.OrderStatusChange
+import com.example.justweddingpro.ClientUi.Response.UpcomingFunctionListResponse
+import com.example.justweddingpro.ClientUi.adapter.ClientFunctionListAdapter
 import com.example.justweddingpro.ManagerAndCaptainUi.Response.MessageEvent
 import com.example.justweddingpro.ManagerAndCaptainUi.Response.OrderListTableResponse
 import com.example.justweddingpro.ManagerAndCaptainUi.adapter.OrderHistoryAdapter
@@ -37,32 +43,26 @@ class OrderHistoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOrderHistoryBinding
     private var mHandler: Handler? = null
 
+    private lateinit var mItemAdapter: ClientFunctionListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOrderHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.headerTitle.headerTitle.text = "OrderHistory"
         binding.headerTitle.frdIcon.setOnClickListener {
             onBackPressed()
         }
 
-        if (!PreferenceManager.getPref(Constants.Preference.Pref_Category, "").equals("manager")) {
-            binding.headerTitle.imgPopupMenu.visibility = View.VISIBLE
-            PreferenceManager.setPref(
-                Constants.Preference.Pref_FunctionId,
-                "23216"
-            )
-
-            PreferenceManager.setPref(
-                Constants.Preference.Pref_EVENTId,
-                "471003"
-            )
+        if (PreferenceManager.getPref(Constants.Preference.IS_WRITE_PERMISSION, false) == false) {
+            binding.headerTitle.headerTitle.text = "Live Order List"
         } else {
-            binding.headerTitle.imgPopupMenu.visibility = View.GONE
+            binding.headerTitle.headerTitle.text = "OrderHistory"
         }
 
-        mApiCalling(false)
+        mApiGetFunctionList()
+        binding.tvDopDownText.setOnClickListener {
+            mFunctionDialog()
+        }
 
         binding.headerTitle.imgPopupMenu.setOnClickListener {
             val popupMenu = PopupMenu(this, binding.headerTitle.imgPopupMenu)
@@ -244,6 +244,101 @@ class OrderHistoryActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun mFunctionDialog() {
+        val dialog = Dialog(this@OrderHistoryActivity, R.style.TransparentStyle)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.item_function_dialog_options)
+        dialog.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT
+        )
+        dialog.setCancelable(false)
+        val rvList = dialog.findViewById<RecyclerView>(R.id.rvList)
+        val btnBack = dialog.findViewById<AppCompatButton>(R.id.btnBack)
+        val btnNext = dialog.findViewById<AppCompatButton>(R.id.btnNext)
+
+        val linearLayoutManager = LinearLayoutManager(
+            this@OrderHistoryActivity, RecyclerView.VERTICAL, false
+        )
+
+        var mFunctionName = ""
+
+        rvList.layoutManager = linearLayoutManager
+        rvList.adapter = mItemAdapter
+        mItemAdapter.SetOnclickListner(object : ClientFunctionListAdapter.OnclickListner {
+            override fun onclick(
+                FunctionID: Int,
+                FunctionName: String,
+                EventID: Int,
+                isClick: Boolean
+            ) {
+
+                val mEventId = EventID.toString()
+                val mFunctionId = FunctionID.toString()
+
+                PreferenceManager.setPref(Constants.Preference.Pref_EVENTId, mEventId)!!
+                PreferenceManager.setPref(Constants.Preference.Pref_FunctionId, mFunctionId)!!
+                PreferenceManager.setPref(
+                    Constants.Preference.Pref_FunctionName,
+                    FunctionName
+                )
+
+                mFunctionName = FunctionName
+                binding.tvDopDownText.text = mFunctionName
+            }
+        })
+
+        btnNext.setOnClickListener {
+            mApiCalling(false)
+            binding.tvDopDownText.text = mFunctionName
+            dialog.dismiss()
+        }
+
+        btnBack.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    private fun mApiGetFunctionList() {
+        CommonUtils.showProgressDialog(this@OrderHistoryActivity)
+        MyApplication.getRestClient()?.API_GetUpcomingFunction(
+            PreferenceManager.getPref(
+                Constants.Preference.PREF_CLIENT_USERID, ""
+            )!!
+        )?.enqueue(object : Callback<ResponseBase<UpcomingFunctionListResponse>> {
+            override fun onResponse(
+                call: Call<ResponseBase<UpcomingFunctionListResponse>?>?,
+                response: Response<ResponseBase<UpcomingFunctionListResponse>?>
+            ) {
+                CommonUtils.hideProgressDialog()
+                if (response.isSuccessful) {
+                    if (response.body()?.mSuccess!!) {
+                        mItemAdapter = ClientFunctionListAdapter(
+                            this@OrderHistoryActivity,
+                            response.body()!!.mData?.getFunctionManagerAssignDetails() as List<UpcomingFunctionListResponse.FunctionManagerAssignDetail>
+                        )
+                        binding.tvDopDownText.text = PreferenceManager.getPref(
+                            Constants.Preference.Pref_FunctionName,
+                            ""
+                        )
+
+                        mApiCalling(true)
+
+                    } else {
+                        Log.d("Mytag", response.body()?.mError!!)
+                    }
+                }
+            }
+
+            override fun onFailure(
+                call: Call<ResponseBase<UpcomingFunctionListResponse>?>, t: Throwable
+            ) {
+                CommonUtils.hideProgressDialog()
+                Log.d("MyTAG", "onFailure: " + t.message)
+            }
+        })
     }
 
     override fun onDestroy() {

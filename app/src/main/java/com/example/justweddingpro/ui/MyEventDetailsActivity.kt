@@ -49,7 +49,6 @@ class MyEventDetailsActivity : BasedActivity() {
 
     override fun onResume() {
         super.onResume()
-        mIsEdite = true
         mApiCalling()
     }
 
@@ -112,6 +111,7 @@ class MyEventDetailsActivity : BasedActivity() {
 
         tvEdite.setOnClickListener {
             popupWindow.dismiss()
+            mIsEdite = true
             startActivity(
                 Intent(
                     this@MyEventDetailsActivity,

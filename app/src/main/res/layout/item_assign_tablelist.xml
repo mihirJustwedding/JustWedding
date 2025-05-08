@@ -26,4 +26,12 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:src="@drawable/delete_icon" />
+
 </RelativeLayout>

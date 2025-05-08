@@ -1,5 +1,6 @@
 package com.example.justweddingpro.ui.Fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.crmapplication.MyApplication
 import com.example.justweddingpro.ClientUi.Response.ManagerTableListResponse
 import com.example.justweddingpro.R
+import com.example.justweddingpro.Response.TableListResponse
 import com.example.justweddingpro.ui.BasedActivity
 import com.example.justweddingpro.ui.Response.ResponseBase
 import com.example.justweddingpro.ui.UserAssignFunctionListActivity
@@ -61,11 +63,32 @@ class TableListFragment : Fragment() {
                             )
 
                             val mItemAdapter = AssignTableAdapter(
+                                true,
                                 requireActivity(),
                                 response.body()!!.mData?.getManagerTableAssignDetails() as ArrayList<ManagerTableListResponse.ManagerTableAssignDetail>
                             )
                             rvTableList.layoutManager = linearLayoutManager
                             rvTableList.adapter = mItemAdapter
+
+                            mItemAdapter.setOnItemClickListener(object :
+                                AssignTableAdapter.OnItemClickListener {
+                                override fun onButtonClick(position: Int) {
+                                    CommonUtils.confirmShowDeleteDialog(requireActivity(),
+                                        "Are you sure want to Delete?",
+                                        object : CommonUtils.Companion.OnDialogClickListener {
+                                            override fun OnYesClick(dialog: Dialog) {
+                                                mApiDeleteTable(
+                                                    response.body()!!.mData?.getManagerTableAssignDetails()!![position]?.getTableAssignId()
+                                                        .toString()
+                                                )
+                                            }
+
+                                            override fun OnNoClick(dialog: Dialog) {
+                                            }
+
+                                        })
+                                }
+                            })
 
                         } else {
                             Log.d("Mytag", response.body()?.mError!!)
@@ -78,6 +101,36 @@ class TableListFragment : Fragment() {
                 override fun onFailure(
                     call: Call<ResponseBase<ManagerTableListResponse>?>,
                     t: Throwable
+                ) {
+                    CommonUtils.hideProgressDialog()
+                    Log.d("MyTAG", "onFailure: " + t.message)
+                }
+            })
+    }
+
+    private fun mApiDeleteTable(assignFunId: String) {
+        CommonUtils.showProgressDialog(requireActivity())
+        MyApplication.getRestClient()?.API_GetDeleteAssignTable(assignFunId)
+            ?.enqueue(object : Callback<ResponseBase<TableListResponse>> {
+                override fun onResponse(
+                    call: Call<ResponseBase<TableListResponse>?>?,
+                    response: Response<ResponseBase<TableListResponse>?>
+                ) {
+                    CommonUtils.hideProgressDialog()
+                    if (response.isSuccessful) {
+                        if (response.body()?.mSuccess!!) {
+                            mApiShowOrderTableList()
+                        } else {
+                            Log.d("Mytag", response.body()?.mError!!)
+                        }
+                    } else {
+                        Toast.makeText(requireActivity(), response.message(), Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<ResponseBase<TableListResponse>?>, t: Throwable
                 ) {
                     CommonUtils.hideProgressDialog()
                     Log.d("MyTAG", "onFailure: " + t.message)

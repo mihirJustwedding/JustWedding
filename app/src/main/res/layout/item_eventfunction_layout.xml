@@ -20,7 +20,7 @@
             android:id="@+id/rlTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background_color"
+            android:background="@color/second_background_color"
             android:paddingStart="@dimen/_15sdp"
             android:paddingTop="@dimen/_5sdp"
             android:paddingBottom="@dimen/_5sdp">
@@ -196,6 +196,7 @@
             android:id="@+id/mView1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
+            android:visibility="gone"
             android:layout_below="@+id/llInfo"
             android:background="@color/viewpoint1" />
 
@@ -205,7 +206,7 @@
             android:layout_below="@+id/mView1"
             android:gravity="center"
             android:orientation="horizontal"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/imgView"

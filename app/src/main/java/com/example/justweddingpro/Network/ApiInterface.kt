@@ -220,7 +220,7 @@ interface ApiInterface {
     @POST(APIConfig.API_AddMenuCategory)
     fun API_AddCategory(
         @Body body: AddCategoryRequest
-    ): Call<ResponseBase<TableListResponse>>
+    ): Call<ResponseBase<AddItemsResponse>>
 
     @POST(APIConfig.API_AddTable)
     fun API_AddTable(
@@ -263,5 +263,10 @@ interface ApiInterface {
     fun API_AddFunctionMaster(
         @Body body: AddFunctionRequest
     ): Call<ResponseBase<AddFunctionResponse>>
+
+    @DELETE(APIConfig.API_GetDeleteAssignTable)
+    fun API_GetDeleteAssignTable(
+        @Path("managerid") eventid: String,
+    ): Call<ResponseBase<TableListResponse>>
 
 }

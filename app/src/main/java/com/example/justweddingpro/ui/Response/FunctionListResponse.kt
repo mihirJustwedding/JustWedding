@@ -52,5 +52,9 @@ class FunctionListResponse {
         @SerializedName("functionName")
         @Expose
         var functionName: String? = null
+
+        @SerializedName("eventname")
+        @Expose
+        var eventname: String? = null
     }
 }

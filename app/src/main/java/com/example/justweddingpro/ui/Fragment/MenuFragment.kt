@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -99,8 +98,8 @@ class MenuFragment : Fragment() {
 
                             mEventListAdapter.SetOnPopupclickListner(object :
                                 EventListAdapter.PopupOnclickListner {
-                                override fun onclick(view: View) {
-                                    val popupwindow_obj = popupDisplay()
+                                override fun onclick(view: View, position: Int) {
+                                    val popupwindow_obj = popupDisplay(position)
                                     popupwindow_obj.showAsDropDown(
                                         view,
                                         -40,
@@ -125,7 +124,7 @@ class MenuFragment : Fragment() {
             })
     }
 
-    fun popupDisplay(): PopupWindow {
+    fun popupDisplay(position: Int): PopupWindow {
         val popupWindow = PopupWindow(requireActivity())
 
         // inflate your layout or dynamically add view

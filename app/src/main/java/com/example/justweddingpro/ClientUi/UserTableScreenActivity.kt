@@ -54,6 +54,7 @@ class UserTableScreenActivity : AppCompatActivity() {
                             )
 
                             val mItemAdapter = AssignTableAdapter(
+                                false,
                                 this@UserTableScreenActivity,
                                 response.body()!!.mData?.getManagerTableAssignDetails() as ArrayList<ManagerTableListResponse.ManagerTableAssignDetail>
                             )

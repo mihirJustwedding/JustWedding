@@ -38,6 +38,7 @@ class CreateEventActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_event_create)
         setContentView(binding.root)
+        mEventDetailsResponse = EventDetailsResponse.EventMasterDetail()
 
         binding.headerView.frdIcon.setOnClickListener {
             onBackPressed()

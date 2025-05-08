@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.crmapplication.MyApplication
+import com.example.justweddingpro.R
 import com.example.justweddingpro.Response.AssignFunctionResponse
 import com.example.justweddingpro.Response.TableListResponse
 import com.example.justweddingpro.databinding.ActivityUserAssignFunctionListBinding
+import com.example.justweddingpro.ui.ManagerAndCaptainListActivity.Companion.mClientUserDetail
 import com.example.justweddingpro.ui.Response.ResponseBase
 import com.example.justweddingpro.ui.adapter.AssignFunctionListAdapter
 import com.example.justweddingpro.utils.CommonUtils
@@ -35,6 +38,14 @@ class UserAssignFunctionListActivity : BasedActivity() {
 
         mUserId = intent.getIntExtra("Ides", 0).toString()
         ApiGetMAnagerList()
+
+        Glide.with(this@UserAssignFunctionListActivity)
+            .load(mClientUserDetail.imageUrl)
+            .placeholder(R.drawable.slider3)
+            .into(binding.mImgFood)
+
+        binding.tvUserName.text = mClientUserDetail.userName.toString()
+        binding.tvDate.text = mClientUserDetail.emailId.toString()
 
     }
 

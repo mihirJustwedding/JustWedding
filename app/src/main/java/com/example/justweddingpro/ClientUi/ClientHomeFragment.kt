@@ -208,6 +208,11 @@ class ClientHomeFragment : Fragment() {
                     CommonUtils.hideProgressDialog()
                     if (response.isSuccessful) {
                         if (response.body()?.mData != null) {
+
+                            binding.tvNoRecordFound.visibility = View.GONE
+                            binding.RlBottom.visibility = View.VISIBLE
+                            binding.rlTop.visibility = View.VISIBLE
+
                             val mList = response.body()!!.mData!!.getEventMenuPlanDetails()
                             var itemsDetList: List<ItemsDetail>? = null
                             if (response.body()!!.mData!!.getEventMenuPlanDetails()!![0] !== null) {
@@ -244,6 +249,10 @@ class ClientHomeFragment : Fragment() {
                         } else {
                             Log.d("Mytag", response.body()?.mError!!)
                         }
+                    } else {
+                        binding.tvNoRecordFound.visibility = View.VISIBLE
+                        binding.RlBottom.visibility = View.GONE
+                        binding.rlTop.visibility = View.GONE
                     }
                 }
 
@@ -419,6 +428,7 @@ class ClientHomeFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     if (response.body()?.mSuccess!!) {
+
                         mItemAdapter = ClientFunctionListAdapter(
                             requireActivity(),
                             response.body()!!.mData?.getFunctionManagerAssignDetails() as List<UpcomingFunctionListResponse.FunctionManagerAssignDetail>
@@ -454,9 +464,15 @@ class ClientHomeFragment : Fragment() {
                         mApiCalling()
 
                     } else {
+                        binding.tvNoRecordFound.visibility = View.VISIBLE
                         CommonUtils.hideProgressDialog()
                         Log.d("Mytag", response.body()?.mError!!)
                     }
+                } else {
+                    binding.rvMain.visibility = View.GONE
+                    binding.tvNoRecordFound.visibility = View.VISIBLE
+                    CommonUtils.hideProgressDialog()
+                    Log.d("Mytag", response.message()!!)
                 }
             }
 

@@ -40,7 +40,6 @@ import com.example.justweddingpro.R
 import com.example.justweddingpro.Response.AddEventResponse
 import com.example.justweddingpro.Response.AddItemsResponse
 import com.example.justweddingpro.Response.MenuCategoryListResponse
-import com.example.justweddingpro.Response.TableListResponse
 import com.example.justweddingpro.databinding.ActivityMenuBinding
 import com.example.justweddingpro.ui.Response.FunctionListResponse
 import com.example.justweddingpro.ui.Response.MenuItemDetailsResponse
@@ -155,7 +154,13 @@ class MenuActivity : AppCompatActivity() {
             registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
                 uri?.let {
                     // Handle the image URI (e.g., show in ImageView)
-                    mCrlImage.setImageURI(it)
+                    if (this::mCrlImage.isInitialized) {
+                        mCrlImage.setImageURI(it)
+                    }
+
+                    if (this::CategorycrlImage.isInitialized) {
+                        CategorycrlImage.setImageURI(it)
+                    }
                     ImageUrlEncoder = getRealPathFromURI(it, this@MenuActivity)!!
                 }
             }
@@ -268,6 +273,7 @@ class MenuActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    private var mIsSelectedStored = true
     private fun ApiCalling(MenuCatid: String) {
         if (isLoading)
             CommonUtils.showProgressDialog(this)
@@ -299,31 +305,36 @@ class MenuActivity : AppCompatActivity() {
 //                                response.body()!!.mData!!.getMenuItems()!![0].itemsDetails
 //                        }
 
-                        for (i in response.body()!!.mData!!.getEventMenuPlanDetails()!!.indices) {
-                            if (!mSelectedItemId?.contains(
-                                    response.body()!!.mData!!.getEventMenuPlanDetails()!![i].getItemId()
-                                        .toString()
-                                )!!
-                            ) {
-                                mSelectedItemList?.add(response.body()!!.mData!!.getEventMenuPlanDetails()!![i])
-                                mSelectedItemId!!.add(
-                                    response.body()!!.mData!!.getEventMenuPlanDetails()!![i].getItemId()
-                                        .toString()
-                                )
-                            } /*else {
+                        if (mIsSelectedStored) {
+                            mIsSelectedStored = false
+                            for (i in response.body()!!.mData!!.getEventMenuPlanDetails()!!.indices) {
+                                if (!mSelectedItemId?.contains(
+                                        response.body()!!.mData!!.getEventMenuPlanDetails()!![i].getItemId()
+                                            .toString()
+                                    )!!
+                                ) {
+                                    mSelectedItemList?.add(response.body()!!.mData!!.getEventMenuPlanDetails()!![i])
+                                    mSelectedItemId!!.add(
+                                        response.body()!!.mData!!.getEventMenuPlanDetails()!![i].getItemId()
+                                            .toString()
+                                    )
+                                } /*else {
                                 mSelectedItemList?.remove(response.body()!!.mData!!.getEventMenuPlanDetails()!![i])
                                 mSelectedItemId!!.remove(
                                     response.body()!!.mData!!.getEventMenuPlanDetails()!![i].getItemId()
                                         .toString()
                                 )
                             }*/
-                        }
+                            }
 
-                        mMenuItemDetailList.forEachIndexed { index, menuItemDetail ->
-                            if (mSelectedItemId!!.contains(menuItemDetail.getId().toString())) {
-                                menuItemDetail.setIsSelected(true)
+                            mMenuItemDetailList.forEachIndexed { index, menuItemDetail ->
+                                if (mSelectedItemId!!.contains(menuItemDetail.getId().toString())) {
+                                    menuItemDetail.setIsSelected(true)
+                                }
                             }
                         }
+
+
 
 //                        for (i in mMenuItemDetailList.indices) {
 //                            val mEventMenuPlanDetail =
@@ -443,6 +454,7 @@ class MenuActivity : AppCompatActivity() {
                     response: Response<ResponseBase<AddEventResponse>?>
                 ) {
                     CommonUtils.hideProgressDialog()
+                    mIsSelectedStored = true
                     if (response.isSuccessful) {
                         if (response.body()?.mSuccess!!) {
                             if (misFunction) {
@@ -452,11 +464,23 @@ class MenuActivity : AppCompatActivity() {
                                 )
                                 mSelectedItemList?.clear()
                                 mSelectedItemId?.clear()
-                            }
 
-                            mMenuItemDetailList.clear()
-                            page = 1
-                            ApiGetMenuCategoryList()
+                                mMenuItemDetailList.clear()
+                                page = 1
+                                ApiGetMenuCategoryList()
+                            } else {
+                                CommonUtils.confirmShowInformationDialog(
+                                    this@MenuActivity,
+                                    "Menu Planning Completed",
+                                    object :
+                                        CommonUtils.Companion.OnDialogClickListener {
+                                        override fun OnYesClick(dialog: Dialog) {
+                                            this@MenuActivity.finish()
+                                        }
+
+                                        override fun OnNoClick(dialog: Dialog) {}
+                                    })
+                            }
 
                         } else {
                             Toast.makeText(
@@ -857,6 +881,7 @@ class MenuActivity : AppCompatActivity() {
         mMenuItemDetailList.clear()
     }
 
+    lateinit var CategorycrlImage: CircleImageView
     private fun mAddCategoryFunctionDialog() {
         val dialog = Dialog(this@MenuActivity, R.style.TransparentStyle)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -868,12 +893,18 @@ class MenuActivity : AppCompatActivity() {
         val edtCategoryName = dialog.findViewById<AppCompatEditText>(R.id.edtCategoryName)
         val edtLanguage = dialog.findViewById<AppCompatEditText>(R.id.edtLanguage)
         val edtMenuSlogan = dialog.findViewById<AppCompatEditText>(R.id.edtMenuSlogan)
+        val llUpload = dialog.findViewById<LinearLayout>(R.id.llUpload)
+        CategorycrlImage = dialog.findViewById<CircleImageView>(R.id.crlImage)
 
         val btnBack = dialog.findViewById<AppCompatButton>(R.id.btnBack)
         val btnNext = dialog.findViewById<AppCompatButton>(R.id.btnNext)
 
+        llUpload.setOnClickListener {
+            checkPermissionAndPickImage()
+        }
+
         btnNext.setOnClickListener {
-            ApiManagerAssignTable(
+            ApiAddCategory(
                 edtCategoryName.text.toString().trim(),
                 edtLanguage.text.toString().trim(),
                 edtMenuSlogan.text.toString().trim()
@@ -887,7 +918,7 @@ class MenuActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun ApiManagerAssignTable(mName: String, Lang: String, Slogan: String) {
+    private fun ApiAddCategory(mName: String, Lang: String, Slogan: String) {
         var mAddCategoryRequest = AddCategoryRequest()
         mAddCategoryRequest.setMenucategoryId(0)
         mAddCategoryRequest.setMenuname(mName)
@@ -906,24 +937,30 @@ class MenuActivity : AppCompatActivity() {
 
         CommonUtils.showProgressDialog(this@MenuActivity)
         MyApplication.getRestClient()?.API_AddCategory(mAddCategoryRequest)
-            ?.enqueue(object : Callback<ResponseBase<TableListResponse>> {
+            ?.enqueue(object : Callback<ResponseBase<AddItemsResponse>> {
                 override fun onResponse(
-                    call: Call<ResponseBase<TableListResponse>?>?,
-                    response: Response<ResponseBase<TableListResponse>?>
+                    call: Call<ResponseBase<AddItemsResponse>?>?,
+                    response: Response<ResponseBase<AddItemsResponse>?>
                 ) {
                     CommonUtils.hideProgressDialog()
                     if (response.isSuccessful) {
                         if (response.body()?.mSuccess!!) {
+
+                            if (ImageUrlEncoder.isNotEmpty()) {
+                                ApiGetUploadFile(
+                                    response.body()!!.mData?.getModuleId().toString(),
+                                    response.body()!!.mData?.getModuleName()!!
+                                )
+                            } else {
+                                mMenuItemDetailList.clear()
+                                page = 1
+                                ApiGetMenuCategoryList()
+                            }
                             Toast.makeText(
                                 this@MenuActivity,
                                 response.body()!!.mMessage,
                                 Toast.LENGTH_SHORT
                             ).show()
-
-
-                            mMenuItemDetailList.clear()
-                            page = 1
-                            ApiGetMenuCategoryList()
                         } else {
                             Log.d("Mytag", response.body()?.mError!!)
                         }
@@ -931,7 +968,7 @@ class MenuActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(
-                    call: Call<ResponseBase<TableListResponse>?>, t: Throwable
+                    call: Call<ResponseBase<AddItemsResponse>?>, t: Throwable
                 ) {
                     CommonUtils.hideProgressDialog()
                     Log.d("MyTAG", "onFailure: " + t.message)

@@ -128,7 +128,7 @@ class EventDetailsFragment : Fragment() {
 
         if (mEventDetailsResponse.status != null) {
             mStatusId = mEventDetailsResponse.status!!
-            spiner?.setSelection(mStatusId)
+            spiner?.setSelection(mStatusId + 1)
 
             edtEventDate?.setText(parseOnlyUploadToDateFormat(mEventDetailsResponse.eventDate.toString())!!)
             edtEventName?.setText(mEventDetailsResponse.eventname!!)

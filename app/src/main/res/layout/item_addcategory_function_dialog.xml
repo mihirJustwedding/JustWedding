@@ -27,6 +27,30 @@
             android:textSize="@dimen/Large_text"
             android:textStyle="bold" />
 
+        <LinearLayout
+            android:id="@+id/llUpload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/crlImage"
+                android:layout_width="@dimen/_75sdp"
+                android:layout_height="@dimen/_75sdp"
+                android:src="@drawable/imges" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/nunitosans_bold"
+                android:text="+ Upload Photo"
+                android:textSize="@dimen/Large_text" />
+
+        </LinearLayout>
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtCategoryName"
             android:layout_width="match_parent"

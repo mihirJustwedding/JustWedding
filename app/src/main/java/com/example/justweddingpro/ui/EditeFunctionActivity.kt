@@ -2,11 +2,14 @@ package com.example.justweddingpro.ui
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.app.Dialog
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
@@ -15,6 +18,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.crmapplication.MyApplication
+import com.example.justweddingpro.Network.RequestModel.AddFunctionRequest
 import com.example.justweddingpro.Network.RequestModel.EventFunctionDetail
 import com.example.justweddingpro.R
 import com.example.justweddingpro.Response.AddEventResponse
@@ -22,7 +26,7 @@ import com.example.justweddingpro.Response.FunctionDetailsResponse
 import com.example.justweddingpro.databinding.ActivityEditeFunctionBinding
 import com.example.justweddingpro.ui.CreateEventActivity.Companion.mEventAddRequest
 import com.example.justweddingpro.ui.CreateEventActivity.Companion.mEventDetailsResponse
-import com.example.justweddingpro.ui.Fragment.FunctionDetailsFragment
+import com.example.justweddingpro.ui.Response.AddFunctionResponse
 import com.example.justweddingpro.ui.Response.EventDetailsResponse
 import com.example.justweddingpro.ui.Response.ResponseBase
 import com.example.justweddingpro.ui.adapter.FunctionListAdapter
@@ -52,14 +56,16 @@ class EditeFunctionActivity : BasedActivity() {
         setContentView(binding.root)
 
         binding.imgAdd.setOnClickListener {
-            if (mFunctionId.isNotEmpty()) onBottomSheetDialog(
-                0,
-                binding.edtFunctionName.text.toString().trim(),
-                "", "", "", "", false
-            )
-            else Toast.makeText(
-                this@EditeFunctionActivity, "Please Select Function First", Toast.LENGTH_LONG
-            ).show()
+//            if (mFunctionId.isNotEmpty()) onBottomSheetDialog(
+//                0,
+//                binding.edtFunctionName.text.toString().trim(),
+//                "", "", "", "", false
+//            )
+//            else Toast.makeText(
+//                this@EditeFunctionActivity, "Please Select Function First", Toast.LENGTH_LONG
+//            ).show()
+
+            mAddFunctionDialog()
         }
 
         mGetFunctionApiCalling()
@@ -212,6 +218,12 @@ class EditeFunctionActivity : BasedActivity() {
                                             binding.edtFunctionName?.setText("")
                                             mFunctionId = ""
                                         }
+
+                                        if (binding.edtFunctionName?.text.toString().isNotEmpty())
+                                            onBottomSheetDialog(0,
+                                                binding.edtFunctionName.text.toString().trim(),
+                                                "", "", "", "", false
+                                            )
                                     }
 
                                     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -406,6 +418,125 @@ class EditeFunctionActivity : BasedActivity() {
 
                 override fun onFailure(
                     call: Call<ResponseBase<AddEventResponse>?>,
+                    t: Throwable
+                ) {
+                    CommonUtils.hideProgressDialog()
+                    Log.d("MyTAG", "onFailure: " + t.message)
+                }
+            })
+    }
+
+    var AddFunedtStartTime: AppCompatEditText? = null
+    var AddFunedtEndTime: AppCompatEditText? = null
+    private fun mAddFunctionDialog() {
+        val dialog = Dialog(this@EditeFunctionActivity, R.style.TransparentStyle)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.item_addfunction_dialog)
+        dialog.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT
+        )
+        dialog.setCancelable(false)
+        val edtFunctionName = dialog.findViewById<AppCompatEditText>(R.id.edtFunctionName)
+        AddFunedtStartTime = dialog.findViewById<AppCompatEditText>(R.id.edtStartTime)
+        AddFunedtEndTime = dialog.findViewById<AppCompatEditText>(R.id.edtEndTime)
+
+        AddFunedtStartTime!!.setOnClickListener {
+            TimePicker(true)
+        }
+
+        AddFunedtEndTime!!.setOnClickListener {
+            TimePicker(false)
+        }
+
+
+        val btnBack = dialog.findViewById<AppCompatButton>(R.id.btnBack)
+        val btnNext = dialog.findViewById<AppCompatButton>(R.id.btnNext)
+
+        btnNext.setOnClickListener {
+            mApiAddEventMenu(edtFunctionName.text.toString().trim())
+            dialog.dismiss()
+        }
+
+        btnBack.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    private fun TimePicker(IsStart: Boolean) {
+        val c: Calendar = Calendar.getInstance()
+        var mHour = c[Calendar.HOUR_OF_DAY]
+        var mMinute = c[Calendar.MINUTE]
+        val timePickerDialog = TimePickerDialog(
+            this@EditeFunctionActivity,
+            OnTimeSetListener { view, hourOfDay, minute ->
+                var mTime = "$hourOfDay:$minute"
+                if (IsStart) {
+                    AddFunedtStartTime?.setText(
+                        "${
+                            CommonUtils.printTimeViewFormat(
+                                mTime
+                            )
+                        }"
+                    )
+                } else
+                    AddFunedtEndTime?.setText(
+                        "${
+                            CommonUtils.printTimeViewFormat(
+                                mTime
+                            )
+                        }"
+                    )
+            },
+            mHour,
+            mMinute,
+            false
+        )
+        timePickerDialog.show()
+    }
+
+    private fun mApiAddEventMenu(mFunctionName: String) {
+        var mAddFunctionRequest = AddFunctionRequest()
+        mAddFunctionRequest.setFunctionId(0)
+        mAddFunctionRequest.setClientuserId(
+            PreferenceManager.getPref(
+                Constants.Preference.PREF_CLIENT_USERID,
+                ""
+            )!!.toInt()
+        )
+        mAddFunctionRequest.setFunEnd(AddFunedtEndTime?.text.toString().trim())
+        mAddFunctionRequest.setFunStart(AddFunedtStartTime?.text.toString().trim())
+        mAddFunctionRequest.setFunctionname(mFunctionName)
+        mAddFunctionRequest.setIsforwebsite("1")
+        mAddFunctionRequest.setPrice("0.00")
+
+        CommonUtils.showProgressDialog(this@EditeFunctionActivity)
+        MyApplication.getRestClient()
+            ?.API_AddFunctionMaster(mAddFunctionRequest)
+            ?.enqueue(object :
+                Callback<ResponseBase<AddFunctionResponse>> {
+                override fun onResponse(
+                    call: Call<ResponseBase<AddFunctionResponse>>?,
+                    response: Response<ResponseBase<AddFunctionResponse>?>
+                ) {
+                    CommonUtils.hideProgressDialog()
+                    if (response.isSuccessful) {
+                        if (response.body()?.mSuccess!!) {
+                            mApiCalling()
+                        } else {
+                            CommonUtils.hideProgressDialog()
+                            Toast.makeText(
+                                this@EditeFunctionActivity,
+                                response.body()?.mMessage!!,
+                                Toast.LENGTH_LONG
+                            ).show()
+                            Log.d("Mytag", response.body()?.mMessage!!)
+                        }
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<ResponseBase<AddFunctionResponse>?>,
                     t: Throwable
                 ) {
                     CommonUtils.hideProgressDialog()

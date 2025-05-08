@@ -34,7 +34,7 @@ class AssignFunctionActivity : BasedActivity() {
         binding = ActivityAssignFunctionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.headerTitle.headerTitle.setText("Function List")
+        binding.headerTitle.headerTitle.text = "Assign Users List"
         binding.headerTitle.frdIcon.setOnClickListener { onBackPressed() }
 
         Tabview()
@@ -56,7 +56,7 @@ class AssignFunctionActivity : BasedActivity() {
 
     private fun Tabview() {
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.manager)))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.captions)))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.Captain)))
 
         val listOfFragments = listOf(ManagerListFragment(true), CaptionsListFragment(true))
         val viewpagerAdapter = ViewpagerAdapter(
@@ -71,7 +71,7 @@ class AssignFunctionActivity : BasedActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewpager) { tab, position ->
             tab.text = when (position) {
                 0 -> getString(R.string.manager)
-                1 -> getString(R.string.captions)
+                1 -> getString(R.string.Captain)
                 else -> ""
             }
         }.attach()

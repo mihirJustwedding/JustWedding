@@ -75,10 +75,13 @@ class PDFViewerActivity : BasedActivity() {
     private fun downloadPdfFile() {
         val url = mFileUrl
         val request = DownloadManager.Request(Uri.parse(url))
-        request.setTitle("Downloading PDF")
-        request.setDescription("Downloading sample.pdf")
+        request.setTitle("${mFunctionName}_MenuReport")
+        request.setDescription("${mFunctionName}_MenuReport.pdf")
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "sample.pdf")
+        request.setDestinationInExternalPublicDir(
+            Environment.DIRECTORY_DOWNLOADS,
+            "${mFunctionName}_MenuReport.pdf"
+        )
 
         val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         downloadManager.enqueue(request)

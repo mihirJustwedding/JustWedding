@@ -17,9 +17,56 @@
             android:layout_below="@+id/headerTitle"
             android:padding="@dimen/_10sdp">
 
+            <RelativeLayout
+                android:id="@+id/RlUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:padding="@dimen/_10sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/mImgFood"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/dummy_image" />
+
+                <LinearLayout
+                    android:id="@+id/llmain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_toEndOf="@+id/mImgFood"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_variable"
+                        android:text="Bjorn Lothbrok"
+                        android:textSize="@dimen/Large_text" />
+
+                    <TextView
+                        android:id="@+id/tvDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:fontFamily="@font/nunito_variable"
+                        android:text="04 February 2025, 14:34:12"
+                        android:textColor="@color/disable_text_color"
+                        android:textSize="@dimen/small_text" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvFunctionList"
                 android:layout_width="match_parent"
+                android:layout_below="@+id/RlUser"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_height="match_parent" />
 
         </RelativeLayout>

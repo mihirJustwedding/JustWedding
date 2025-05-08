@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/_30sdp">
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:padding="@dimen/_16sdp"
+                android:src="@drawable/close_icon"
+                app:tint="@color/black" />
 
             <RelativeLayout
                 android:id="@+id/llTop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_below="@+id/imgView"
                 android:orientation="vertical"
                 android:padding="@dimen/_10sdp">
 
@@ -142,6 +155,7 @@
                         android:gravity="center_vertical"
                         android:padding="@dimen/_10sdp"
                         android:text="Feedback"
+                        android:visibility="gone"
                         android:textSize="@dimen/medium_text"
                         app:drawableLeftCompat="@drawable/manager_feedback_icon" />
 

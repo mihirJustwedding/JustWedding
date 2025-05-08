@@ -16,4 +16,10 @@
 
     <color name="transparent1">#A6000000</color>
     <color name="background_color">#F2F2F3</color>
+    <color name="second_background_color">#F9F9F9</color>
+    <color name="second_background_border_color">#F1F1F1</color>
+
+    <color name="not_confirmed_event">#F05E5E</color>
+    <color name="confirmed_event">#11C280</color>
+    <color name="inqury_event">#5693FD</color>
 </resources>

@@ -51,7 +51,7 @@ class CreateManagerActivity : BasedActivity() {
         }
 
         binding.btnSignin.setOnClickListener {
-            mApiAddEventMenu()
+            mApiCreateManager()
         }
 
         binding.llUpload.setOnClickListener {
@@ -115,7 +115,7 @@ class CreateManagerActivity : BasedActivity() {
         return file.path
     }
 
-    private fun mApiAddEventMenu() {
+    private fun mApiCreateManager() {
         CommonUtils.showProgressDialog(this@CreateManagerActivity)
 
         var mAddUserRequest = AddUserRequest()
@@ -147,7 +147,7 @@ class CreateManagerActivity : BasedActivity() {
                 ) {
                     CommonUtils.hideProgressDialog()
                     if (response.isSuccessful) {
-                        if (response.body()?.mData != null) {
+                        if (response.body()?.mSuccess!!) {
                             Toast.makeText(
                                 this@CreateManagerActivity,
                                 response.body()!!.mMessage, Toast.LENGTH_LONG

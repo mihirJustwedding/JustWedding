@@ -130,7 +130,7 @@
     <string name="function_appear_heren">Function appear heren</string>
     <string name="header_title">Header Title</string>
     <string name="manager">Managers</string>
-    <string name="captions">Captions</string>
+    <string name="Captain">Captain</string>
     <string name="assign">Assign</string>
     <string name="tables">Tables</string>
     <string name="tables_view">Tables View</string>
@@ -147,6 +147,11 @@
     <string name="bride_and_groom_details">Bride and Groom Details</string>
     <string name="bride_name">Bride Name</string>
     <string name="groom_name">Groom Name</string>
+    <string name="add_event">+ Add Event</string>
+    <string name="captain_name">Captain name</string>
+    <string name="captain_age">Captain age</string>
+    <string name="captain_phone_number">Captain phone number</string>
+    <string name="captain_email_address">Captain email address</string>
 
 
     <string-array name="array_name">

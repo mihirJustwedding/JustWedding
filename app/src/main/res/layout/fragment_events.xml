@@ -94,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rlTop"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp"
             android:src="@drawable/status" />
 
         <androidx.recyclerview.widget.RecyclerView

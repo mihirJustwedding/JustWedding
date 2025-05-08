@@ -67,6 +67,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rvMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/app_bar"
@@ -107,31 +108,38 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/lltop"
+                <RelativeLayout
+                    android:id="@+id/rlTop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/llDropdown"
-                    android:layout_marginStart="-10dp"
-                    android:layout_marginEnd="-10dp"
-                    android:background="@drawable/edittext_background"
-                    android:orientation="vertical"
-                    android:padding="@dimen/_10sdp">
+                    android:layout_below="@+id/llDropdown">
+
+                    <LinearLayout
+                        android:id="@+id/lltop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="-10dp"
+                        android:layout_marginEnd="-10dp"
+                        android:background="@drawable/edittext_background"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_10sdp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvItems"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvItems"
+                        android:id="@+id/rvListItems"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/lltop"
+                        android:padding="@dimen/_10sdp"
+                        tools:listitem="@layout/item_food_homelist" />
 
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvListItems"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/lltop"
-                    android:padding="@dimen/_10sdp"
-                    tools:listitem="@layout/item_food_homelist" />
+                </RelativeLayout>
 
             </RelativeLayout>
 
@@ -167,6 +175,16 @@
             </RelativeLayout>
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvNoRecordFound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/no_record_found"
+            android:textSize="@dimen/medium_text"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

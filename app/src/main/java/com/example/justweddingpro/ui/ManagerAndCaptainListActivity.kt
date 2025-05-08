@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.justweddingpro.R
+import com.example.justweddingpro.Response.ManagerListResponse
 import com.example.justweddingpro.databinding.ActivityManagerAndCaptainListBinding
 import com.example.justweddingpro.ui.Fragment.CaptionsListFragment
 import com.example.justweddingpro.ui.Fragment.ManagerListFragment
@@ -14,7 +15,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 class ManagerAndCaptainListActivity : BasedActivity() {
 
     private lateinit var binding: ActivityManagerAndCaptainListBinding
-
+    companion object {
+        var mClientUserDetail = ManagerListResponse.ClientUserDetail()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityManagerAndCaptainListBinding.inflate(layoutInflater)
@@ -27,7 +30,7 @@ class ManagerAndCaptainListActivity : BasedActivity() {
 
     private fun Tabview() {
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.manager)))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.captions)))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.Captain)))
 
         val listOfFragments = listOf(ManagerListFragment(false), CaptionsListFragment(false))
         val viewpagerAdapter = ViewpagerAdapter(
@@ -42,7 +45,7 @@ class ManagerAndCaptainListActivity : BasedActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewpager) { tab, position ->
             tab.text = when (position) {
                 0 -> getString(R.string.manager)
-                1 -> getString(R.string.captions)
+                1 -> getString(R.string.Captain)
                 else -> ""
             }
         }.attach()

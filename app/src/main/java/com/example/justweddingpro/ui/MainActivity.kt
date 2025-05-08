@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.Handler
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -18,7 +19,6 @@ import com.example.justweddingpro.R
 import com.example.justweddingpro.databinding.ActivityMainBinding
 import com.example.justweddingpro.ui.Fragment.EventsFragment
 import com.example.justweddingpro.ui.Fragment.HomeFragment
-import com.example.justweddingpro.ui.Fragment.MenuFragment
 import com.example.justweddingpro.ui.Fragment.ProfileFragment
 import com.example.justweddingpro.ui.MyEventDetailsActivity.Companion.mIsEdite
 import com.example.justweddingpro.utils.Constants
@@ -165,7 +165,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 isEventClick = false
                 isProfilelick = false
                 isMenuClick = true
-                replaceFragment(MenuFragment())
+//                replaceFragment(MenuFragment())
+                binding.drawerLayout.openDrawer(Gravity.START)
 
                 binding.img1.imageTintList =
                     ColorStateList.valueOf(resources.getColor(R.color.Secondary_color))
@@ -286,6 +287,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.mNavigationLayout.tvFeedback.setOnClickListener {
             startActivity(Intent(this, FeedbackActivity::class.java))
+        }
+
+        binding.mNavigationLayout.imgView.setOnClickListener {
+            isHomeClick = false
+            isEventClick = true
+            isProfilelick = false
+            isMenuClick = false
+            clearBackStack()
+            binding.drawerLayout.closeDrawers()
+            replaceFragment(EventsFragment())
+            binding.img1.imageTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.Secondary_color))
+            binding.txt1.setTextColor(resources.getColor(R.color.Secondary_color))
+
+            binding.img2.imageTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.Color_Primery))
+            binding.img3.imageTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.Secondary_color))
+            binding.img4.imageTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.Secondary_color))
+
+            binding.txt2.setTextColor(resources.getColor(R.color.Color_Primery))
+            binding.txt3.setTextColor(resources.getColor(R.color.Secondary_color))
+            binding.txt4.setTextColor(resources.getColor(R.color.Secondary_color))
         }
     }
 }

@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.justweddingpro.R
 import com.example.justweddingpro.Response.ManagerListResponse
 import com.example.justweddingpro.ui.AssignFunctionActivity.Companion.clientUserIdList
-import com.example.justweddingpro.utils.CommonUtils
 
 class CaptainListAdapter(
     var mcontext: Context,
@@ -51,7 +50,7 @@ class CaptainListAdapter(
             .into(holder.mImgFood)
 
         holder.tvUserName.text = mList[position].userName
-        holder.tvDate.text = CommonUtils.parseDateAndTimeToViewDate(mList[position].emailId)
+        holder.tvDate.text = mList[position].emailId
         holder.Checkbox.setOnClickListener {
             if (holder.Checkbox.isChecked) {
                 clientUserIdList.add(mList[position].eventfunctionId!!)

@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
@@ -161,6 +163,9 @@ class MyEventDetailsActivity : BasedActivity() {
                                 "Party name: ${mEventDetailsResponse?.partyName}"
                             binding.tvEventName.text = mEventDetailsResponse?.eventname
                             binding.btnStatus.setText(CommonUtils.mGetStatus(mEventDetailsResponse?.status!!))
+                            binding.btnStatus.backgroundTintList =
+                                (ColorStateList.valueOf(getRandomColor(mEventDetailsResponse?.status!!)))
+
                             binding.tvEventDate.setText(
                                 "${
                                     parseDateAndToViewDate(
@@ -198,6 +203,9 @@ class MyEventDetailsActivity : BasedActivity() {
                                         mEventDetailsResponse.eventFunctionDetails!![position].functionId.toString()
                                     mEventId =
                                         mEventDetailsResponse.eventFunctionDetails!![position].eventId.toString()
+
+                                    mFunctionName =
+                                        mEventDetailsResponse.eventFunctionDetails!![position].functionName!!
 
                                     val popupwindow_obj = FunctionPopupDialog()
                                     popupwindow_obj.showAsDropDown(
@@ -272,6 +280,22 @@ class MyEventDetailsActivity : BasedActivity() {
             }
             return null
         }
+    }
+
+    private fun getRandomColor(eventType: Int): Int {
+        if (this != null) {
+            val resources: Resources = this.getResources()
+            return if (eventType == 0) {
+                resources.getColor(R.color.inqury_event)
+            } else if (eventType == 1) {
+                resources.getColor(R.color.confirmed_event)
+            } else if (eventType == 2) {
+                resources.getColor(R.color.not_confirmed_event)
+            } else {
+                resources.getColor(R.color.not_confirmed_event)
+            }
+        }
+        return 0
     }
 
 

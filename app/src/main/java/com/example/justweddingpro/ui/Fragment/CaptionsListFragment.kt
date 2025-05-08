@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.crmapplication.MyApplication
 import com.example.justweddingpro.R
 import com.example.justweddingpro.Response.ManagerListResponse
+import com.example.justweddingpro.ui.ManagerAndCaptainListActivity
+import com.example.justweddingpro.ui.ManagerAndCaptainListActivity.Companion.mClientUserDetail
 import com.example.justweddingpro.ui.Response.ResponseBase
 import com.example.justweddingpro.ui.UserAssignFunctionListActivity
 import com.example.justweddingpro.ui.adapter.CaptainListAdapter
@@ -70,6 +72,8 @@ class CaptionsListFragment(var Isfunction: Boolean) : Fragment() {
 
                         mItemAdapter.SetOnclickListner(object : CaptainListAdapter.OnclickListner {
                             override fun onclick(position: Int) {
+                                mClientUserDetail =
+                                    response.body()!!.mData?.getClientUserDetails()?.get(position)!!
                                 startActivity(
                                     Intent(
                                         requireActivity(),

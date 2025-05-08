@@ -22,6 +22,8 @@ open class BasedActivity : AppCompatActivity() {
 
         var mEventId = ""
         var mFunctionId = ""
+
+        var mFunctionName = ""
     }
 
     override fun onResume() {

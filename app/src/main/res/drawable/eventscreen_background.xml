@@ -5,10 +5,10 @@
         android:bottomLeftRadius="@dimen/_30sdp"
         android:bottomRightRadius="@dimen/_30sdp" />
 
-    <solid android:color="@color/background_color" />
+    <solid android:color="@color/second_background_color" />
 
     <stroke
         android:width="@dimen/_2sdp"
-        android:color="@color/viewpoint1" />
+        android:color="@color/second_background_border_color" />
 
 </shape>

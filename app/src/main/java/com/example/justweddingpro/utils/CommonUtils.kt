@@ -318,6 +318,35 @@ class CommonUtils {
         }
 
         @JvmStatic
+        fun confirmShowInformationDialog(
+            context: Context?,
+            msg: String?,
+            onDialogClickListener: OnDialogClickListener
+        ) {
+            val dialog = Dialog(context!!, R.style.TransparentStyle)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.alert_normal_information_dialog)
+            dialog.window!!.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT
+            )
+            dialog.setCancelable(false)
+            val txt = dialog.findViewById<TextView>(R.id.txt_alert)
+            val yes = dialog.findViewById<Button>(R.id.btn_alert)
+            val no = dialog.findViewById<Button>(R.id.btnCancel)
+            txt.text = msg
+            yes.setOnClickListener {
+                dialog.dismiss()
+                onDialogClickListener.OnYesClick(dialog)
+            }
+            no.setOnClickListener {
+                dialog.dismiss()
+                onDialogClickListener.OnNoClick(dialog)
+            }
+            dialog.show()
+        }
+
+        @JvmStatic
         fun mGetStatus(status: Int): String {
             var mStatusString = ""
             if (status == 0) {

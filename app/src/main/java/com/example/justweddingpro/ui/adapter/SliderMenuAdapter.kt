@@ -39,30 +39,30 @@ class SliderMenuAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (row_index == position) {
             holder.imgBackground.setBackgroundColor(mcontext.getColor(R.color.Color_Primery))
-            holder.ivImageview.imageTintList =
-                ColorStateList.valueOf(
-                    mcontext.resources.getColor(
-                        R.color.white
-                    )
-                )
+//            holder.ivImageview.imageTintList =
+//                ColorStateList.valueOf(
+//                    mcontext.resources.getColor(
+//                        R.color.white
+//                    )
+//                )
         } else {
             if ((row_index == -1) && (position == 0)) {
                 holder.imgBackground.setBackgroundColor(mcontext.getColor(R.color.Color_Primery))
-                holder.ivImageview.imageTintList =
-                    ColorStateList.valueOf(
-                        mcontext.resources.getColor(
-                            R.color.white
-                        )
-                    )
+//                holder.ivImageview.imageTintList =
+//                    ColorStateList.valueOf(
+//                        mcontext.resources.getColor(
+//                            R.color.white
+//                        )
+//                    )
             } else {
                 holder.imgBackground.setBackgroundColor(mcontext.getColor(R.color.white))
 //                holder.ivImageview.setBackgroundColor(mcontext.getColor(R.color.Color_Primery))
-                holder.ivImageview.imageTintList =
-                    ColorStateList.valueOf(
-                        mcontext.resources.getColor(
-                            R.color.Color_Primery
-                        )
-                    )
+//                holder.ivImageview.imageTintList =
+//                    ColorStateList.valueOf(
+//                        mcontext.resources.getColor(
+//                            R.color.Color_Primery
+//                        )
+//                    )
             }
         }
 

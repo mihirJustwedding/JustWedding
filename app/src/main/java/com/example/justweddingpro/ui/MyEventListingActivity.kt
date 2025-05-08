@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,9 +37,15 @@ class MyEventListingActivity : AppCompatActivity() {
         binding.headerview.frdIcon.setOnClickListener {
             onBackPressed()
         }
+
+        binding.btnSignin.setOnClickListener {
+            MyEventDetailsActivity.mIsEdite = false
+            startActivity(Intent(this@MyEventListingActivity, CreateEventActivity::class.java))
+        }
         mApiCalling()
     }
 
+    var mList = ArrayList<EventDetailsResponse.EventMasterDetail>()
     private fun mApiCalling() {
         CommonUtils.showProgressDialog(this@MyEventListingActivity)
         MyApplication.getRestClient()
@@ -57,7 +64,8 @@ class MyEventListingActivity : AppCompatActivity() {
                     CommonUtils.hideProgressDialog()
                     if (response.isSuccessful) {
                         if (response.body()?.mData != null) {
-                            var mList = response.body()!!.mData!!.getEventMasterDetails()
+                            mList =
+                                response.body()!!.mData!!.getEventMasterDetails() as ArrayList<EventDetailsResponse.EventMasterDetail>
 
                             val mEventListAdapter = EventListAdapter(
                                 this@MyEventListingActivity,
@@ -71,26 +79,17 @@ class MyEventListingActivity : AppCompatActivity() {
                             )
                             binding.rvEventList.layoutManager = linearLayoutManager
                             binding.rvEventList.adapter = mEventListAdapter
-                            mEventListAdapter.SetOnclickListner(object :
-                                EventListAdapter.OnclickListner {
-                                override fun onclick(position: Int) {
-                                    PreferenceManager.setPref(
-                                        Constants.Preference.Pref_EVENTId,
-                                        mList[position].eventId.toString()
-                                    )
-                                    startActivity(
-                                        Intent(
-                                            this@MyEventListingActivity,
-                                            MyEventDetailsActivity::class.java
-                                        )
-                                    )
-                                }
-                            })
+//                            mEventListAdapter.SetOnclickListner(object :
+//                                EventListAdapter.OnclickListner {
+//                                override fun onclick(position: Int) {
+//
+//                                }
+//                            })
 
                             mEventListAdapter.SetOnPopupclickListner(object :
                                 EventListAdapter.PopupOnclickListner {
-                                override fun onclick(view: View) {
-                                    val popupwindow_obj = popupDisplay()
+                                override fun onclick(view: View, position: Int) {
+                                    val popupwindow_obj = popupDisplay(position)
                                     popupwindow_obj.showAsDropDown(
                                         view,
                                         -40,
@@ -115,7 +114,7 @@ class MyEventListingActivity : AppCompatActivity() {
             })
     }
 
-    fun popupDisplay(): PopupWindow {
+    fun popupDisplay(position: Int): PopupWindow {
         val popupWindow = PopupWindow(this)
 
         // inflate your layout or dynamically add view
@@ -127,6 +126,51 @@ class MyEventListingActivity : AppCompatActivity() {
         popupWindow.contentView = view
         popupWindow.elevation = 5f
         popupWindow.setBackgroundDrawable(getDrawable(R.drawable.popup_menu_background))
+
+        var tvEdite = view.findViewById<TextView>(R.id.tvEdite)
+        var tvView = view.findViewById<TextView>(R.id.tvView)
+        var tvPlanning = view.findViewById<TextView>(R.id.tvPlanning)
+        var tvMenuReport = view.findViewById<TextView>(R.id.tvMenuReport)
+        var tvAssignFunc = view.findViewById<TextView>(R.id.tvAssignFunc)
+
+        tvMenuReport.visibility = View.GONE
+        tvAssignFunc.visibility = View.GONE
+
+        tvView.setOnClickListener {
+            popupWindow.dismiss()
+            PreferenceManager.setPref(
+                Constants.Preference.Pref_EVENTId,
+                mList[position].eventId.toString()
+            )
+            startActivity(
+                Intent(
+                    this@MyEventListingActivity,
+                    MyEventDetailsActivity::class.java
+                )
+            )
+        }
+
+        tvEdite.setOnClickListener {
+            popupWindow.dismiss()
+            MyEventDetailsActivity.mIsEdite = true
+            startActivity(
+                Intent(
+                    this@MyEventListingActivity,
+                    CreateEventActivity::class.java
+                )
+            )
+        }
+
+        tvPlanning.setOnClickListener {
+            popupWindow.dismiss()
+            startActivity(
+                Intent(
+                    this@MyEventListingActivity,
+                    MenuActivity::class.java
+                )
+            )
+        }
+
         return popupWindow
     }
 }

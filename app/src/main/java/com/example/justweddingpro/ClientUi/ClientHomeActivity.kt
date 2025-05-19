@@ -5,19 +5,19 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.justweddingpro.ManagerAndCaptainUi.OrderHistoryActivity
 import com.example.justweddingpro.R
 import com.example.justweddingpro.databinding.ActivityClientHomeBinding
+import com.example.justweddingpro.ui.BasedActivity
 import com.example.justweddingpro.ui.CreateCaptainActivity
 import com.example.justweddingpro.utils.Constants
 import com.example.justweddingpro.utils.PreferenceManager
 import com.google.android.material.navigation.NavigationView
 
 
-class ClientHomeActivity : AppCompatActivity() {
+class ClientHomeActivity : BasedActivity() {
 
     lateinit var binding: ActivityClientHomeBinding
 
@@ -58,6 +58,10 @@ class ClientHomeActivity : AppCompatActivity() {
 
             if (item.itemId == R.id.FunctionList) {
                 startActivity(Intent(this@ClientHomeActivity, UserFunctionListActivity::class.java))
+            }
+
+            if (item.itemId == R.id.mLogout) {
+                mLogout()
             }
             // Close the drawer after selection
             binding.drawerLayout.closeDrawers()

@@ -37,6 +37,11 @@
             android:icon="@drawable/manager_captain_icon"
             android:title="Function List" />
 
+        <item
+            android:id="@+id/mLogout"
+            android:icon="@drawable/manager_captain_icon"
+            android:title="Logout" />
+
     </group>
 
 </menu>

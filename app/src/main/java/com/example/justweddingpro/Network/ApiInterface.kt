@@ -266,7 +266,12 @@ interface ApiInterface {
 
     @DELETE(APIConfig.API_GetDeleteAssignTable)
     fun API_GetDeleteAssignTable(
-        @Path("managerid") eventid: String,
+        @Path("managerid") managerid: String,
+    ): Call<ResponseBase<TableListResponse>>
+
+    @DELETE(APIConfig.API_GetEventDelete)
+    fun API_GetDeleteEvent(
+        @Path("eventid") eventid: String,
     ): Call<ResponseBase<TableListResponse>>
 
 }

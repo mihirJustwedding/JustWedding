@@ -220,10 +220,28 @@ class EditeFunctionActivity : BasedActivity() {
                                         }
 
                                         if (binding.edtFunctionName?.text.toString().isNotEmpty())
-                                            onBottomSheetDialog(0,
-                                                binding.edtFunctionName.text.toString().trim(),
-                                                "", "", "", "", false
-                                            )
+//                                            onBottomSheetDialog(
+//                                                0,
+//                                                binding.edtFunctionName.text.toString().trim(),
+//                                                "", "", "", "", false
+//                                            )
+                                        onBottomSheetDialog(
+                                            0,
+                                            binding.edtFunctionName?.text.toString().trim(),
+                                            "${mEventAddRequest.eventDate} ${
+                                                response.body()?.mData!!.functionMasterDetails?.get(
+                                                    position1
+                                                )?.funStart!!
+                                            }",
+                                            "${mEventAddRequest.eventDate} ${
+                                                response.body()?.mData!!.functionMasterDetails?.get(
+                                                    position1
+                                                )?.funEnd!!
+                                            }",
+                                            "",
+                                            "",
+                                            false
+                                        )
                                     }
 
                                     override fun onNothingSelected(parent: AdapterView<*>?) {

@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 
 class FunctionListResponse {
 
-    @SerializedName("functionDetails")
+    @SerializedName("eventFunctionDetails")
     @Expose
     private var functionDetails: List<FunctionDetail?>? = null
 

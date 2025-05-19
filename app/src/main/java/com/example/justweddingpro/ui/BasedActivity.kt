@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.justweddingpro.R
+import com.example.justweddingpro.utils.PreferenceManager
 
 open class BasedActivity : AppCompatActivity() {
     companion object {
@@ -56,5 +57,15 @@ open class BasedActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.d("PRT", "onActivityResult: ")
+    }
+
+    fun mLogout() {
+        finish()
+        PreferenceManager.clearAll()
+        val accountsIntent = Intent(this, LoginActivity::class.java)
+        accountsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        accountsIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        accountsIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(accountsIntent)
     }
 }

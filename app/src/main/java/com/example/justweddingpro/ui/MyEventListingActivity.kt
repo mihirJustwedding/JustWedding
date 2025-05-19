@@ -1,5 +1,6 @@
 package com.example.justweddingpro.ui
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +9,13 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.PopupWindow
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.crmapplication.MyApplication
 import com.example.justweddingpro.R
+import com.example.justweddingpro.Response.TableListResponse
 import com.example.justweddingpro.databinding.ActivityMyEventListingBinding
 import com.example.justweddingpro.ui.Response.EventDetailsResponse
 import com.example.justweddingpro.ui.Response.ResponseBase
@@ -89,7 +92,8 @@ class MyEventListingActivity : AppCompatActivity() {
                             mEventListAdapter.SetOnPopupclickListner(object :
                                 EventListAdapter.PopupOnclickListner {
                                 override fun onclick(view: View, position: Int) {
-                                    val popupwindow_obj = popupDisplay(position)
+                                    val popupwindow_obj =
+                                        popupDisplay(position, mList[position].eventId.toString())
                                     popupwindow_obj.showAsDropDown(
                                         view,
                                         -40,
@@ -114,7 +118,7 @@ class MyEventListingActivity : AppCompatActivity() {
             })
     }
 
-    fun popupDisplay(position: Int): PopupWindow {
+    fun popupDisplay(position: Int, mEventId: String): PopupWindow {
         val popupWindow = PopupWindow(this)
 
         // inflate your layout or dynamically add view
@@ -132,6 +136,7 @@ class MyEventListingActivity : AppCompatActivity() {
         var tvPlanning = view.findViewById<TextView>(R.id.tvPlanning)
         var tvMenuReport = view.findViewById<TextView>(R.id.tvMenuReport)
         var tvAssignFunc = view.findViewById<TextView>(R.id.tvAssignFunc)
+        var tvDelete = view.findViewById<TextView>(R.id.tvDelete)
 
         tvMenuReport.visibility = View.GONE
         tvAssignFunc.visibility = View.GONE
@@ -171,6 +176,55 @@ class MyEventListingActivity : AppCompatActivity() {
             )
         }
 
+        tvDelete.setOnClickListener {
+            popupWindow.dismiss()
+            CommonUtils.confirmShowDeleteDialog(this@MyEventListingActivity,
+                "Are you sure want to Delete?",
+                object : CommonUtils.Companion.OnDialogClickListener {
+                    override fun OnYesClick(dialog: Dialog) {
+                        mApiDeleteTable(mEventId)
+                    }
+
+                    override fun OnNoClick(dialog: Dialog) {
+                    }
+
+                })
+        }
+
         return popupWindow
+    }
+
+    private fun mApiDeleteTable(EventId: String) {
+        CommonUtils.showProgressDialog(this@MyEventListingActivity)
+        MyApplication.getRestClient()?.API_GetDeleteEvent(EventId)
+            ?.enqueue(object : Callback<ResponseBase<TableListResponse>> {
+                override fun onResponse(
+                    call: Call<ResponseBase<TableListResponse>?>?,
+                    response: Response<ResponseBase<TableListResponse>?>
+                ) {
+                    CommonUtils.hideProgressDialog()
+                    if (response.isSuccessful) {
+                        if (response.body()?.mSuccess!!) {
+                            mApiCalling()
+                        } else {
+                            Log.d("Mytag", response.body()?.mError!!)
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@MyEventListingActivity,
+                            response.message(),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<ResponseBase<TableListResponse>?>, t: Throwable
+                ) {
+                    CommonUtils.hideProgressDialog()
+                    Log.d("MyTAG", "onFailure: " + t.message)
+                }
+            })
     }
 }

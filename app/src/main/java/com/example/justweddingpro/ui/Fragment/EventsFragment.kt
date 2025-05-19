@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.crmapplication.MyApplication
 import com.example.justweddingpro.databinding.FragmentEventsBinding
+import com.example.justweddingpro.ui.MyEventDetailsActivity.Companion.IsBackpress
 import com.example.justweddingpro.ui.Response.EventListResponse
 import com.example.justweddingpro.ui.Response.ResponseBase
 import com.example.justweddingpro.ui.adapter.CalenderEventAdapter
@@ -56,6 +57,14 @@ class EventsFragment : Fragment() {
         _binding = FragmentEventsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (IsBackpress) {
+            IsBackpress = false
+            mApiCalling()
+        }
     }
 
     private fun monthFormat(date: LocalDate): String? {

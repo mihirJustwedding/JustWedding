@@ -210,7 +210,13 @@ class ClientHomeFragment : Fragment() {
                         if (response.body()?.mData != null) {
 
                             binding.tvNoRecordFound.visibility = View.GONE
-                            binding.RlBottom.visibility = View.VISIBLE
+                            if (PreferenceManager.getPref(
+                                    Constants.Preference.IS_WRITE_PERMISSION,
+                                    false
+                                )!!
+                            ) {
+                                binding.RlBottom.visibility = View.VISIBLE
+                            }
                             binding.rlTop.visibility = View.VISIBLE
 
                             val mList = response.body()!!.mData!!.getEventMenuPlanDetails()

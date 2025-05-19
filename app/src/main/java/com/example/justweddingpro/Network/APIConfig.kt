@@ -30,7 +30,7 @@ object APIConfig {
         "getitemdetailsbypagenototalrecordclientidmenucategoryideventidfunctionid/" +
                 "{page}/{totalItem}/{clientid}/{menucatId}/{eventid}/{functionid}/"
 
-    const val API_FUNCTION_LISTS = "getfunctiondetailsbyeventid/{eventid}/"
+    const val API_FUNCTION_LISTS = "geteventfunctionbyeventid/{eventid}/"
     const val API_EVENT_DETAILS = "geteventmasterbyid/{eventid}/"
     const val API_EventList = "geteventmasterbyclientid/{clientid}/"
     const val API_AddMenuPlanning = "addeventmenuplan/"
@@ -60,6 +60,8 @@ object APIConfig {
     const val API_GetUpcomingFunction = "getupcommingfunctionmanagerassignbyclientId/{clientid}/"
     const val API_GetMenuPlanningDetails = "geteventmenuplandetailsbyeventandfunctionid/{eventid}/{functionid}/"
     const val API_AddFunctionMaster = "addfunctionmaster/"
+
+    const val API_GetEventDelete = "deleteeventmasterbyid/{eventid}/"
 
     /*Api Keys*/
     object ApiConst {

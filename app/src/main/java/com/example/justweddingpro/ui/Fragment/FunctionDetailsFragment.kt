@@ -28,11 +28,11 @@ import com.example.justweddingpro.Network.RequestModel.AddFunctionRequest
 import com.example.justweddingpro.Network.RequestModel.EventFunctionDetail
 import com.example.justweddingpro.R
 import com.example.justweddingpro.Response.FunctionDetailsResponse
+import com.example.justweddingpro.ui.CreateEventActivity.Companion.mEventAddRequest
 import com.example.justweddingpro.ui.Response.AddFunctionResponse
 import com.example.justweddingpro.ui.Response.ResponseBase
 import com.example.justweddingpro.ui.adapter.FunctionListAdapter
 import com.example.justweddingpro.utils.CommonUtils
-import com.example.justweddingpro.utils.CommonUtils.Companion.parseDateToUploadFormat
 import com.example.justweddingpro.utils.CommonUtils.Companion.printDateViewFormate
 import com.example.justweddingpro.utils.CommonUtils.Companion.printTimeViewFormat
 import com.example.justweddingpro.utils.Constants
@@ -98,7 +98,81 @@ class FunctionDetailsFragment : Fragment() {
     var edtStartTime: AppCompatEditText? = null
     var edtEndTime: AppCompatEditText? = null
 
-    private fun onBottomSheetDialog(mFuncationName: String) {
+//    private fun onBottomSheetDialog(
+//        mEventFunctionId: Int,
+//        mFuncationName: String,
+//        mStartTime: String,
+//        mEndTime: String,
+//        VanueName: String,
+//        Pax: String, IsEdite: Boolean
+//    ) {
+//        val dialog = BottomSheetDialog(requireActivity(), R.style.BottomSheetDialogTheme)
+//        val view = layoutInflater.inflate(R.layout.item_bottomsheet_dialog, null)
+//
+//
+//        val btnClose = view.findViewById(R.id.imgClose) as ImageView
+//        val edtFunName = view.findViewById(R.id.edtFunName) as AppCompatEditText
+//        val btnNext = view.findViewById(R.id.btnNext) as AppCompatButton
+//        val edtVenueName = view.findViewById(R.id.edtVenueName) as AppCompatEditText
+//        val edtPax = view.findViewById(R.id.edtPax) as AppCompatEditText
+//        edtStartTime = view.findViewById(R.id.edtStartTime) as AppCompatEditText
+//        edtEndTime = view.findViewById(R.id.edtEndTime) as AppCompatEditText
+//
+//        edtStartTime!!.setOnClickListener {
+//            DateAndTimePickerDialog(true)
+//        }
+//
+//        edtEndTime!!.setOnClickListener {
+//            DateAndTimePickerDialog(false)
+//        }
+//
+//        btnNext.setOnClickListener {
+//            var mFunctionMasterDetail: EventFunctionDetail? = null
+//            mFunctionMasterDetail = EventFunctionDetail(
+//                0, edtPax.text.toString().toInt(),
+//                parseDateToUploadFormat(edtStartTime!!.text.toString())!!,
+//                parseDateToUploadFormat(edtEndTime!!.text.toString())!!,
+//                edtVenueName.text.toString().trim(),
+//                mFunctionId.toInt(), edtFunName.text.toString()
+//            )
+//
+////            mFunctionMasterDetail.setEventFunctionId(0)
+////            mFunctionMasterDetail.setPax(edtPax.text.toString().toInt())
+////            mFunctionMasterDetail.setStarttime(parseDateToUploadFormat(edtStartTime!!.text.toString())!!)
+////            mFunctionMasterDetail.setEndtime(parseDateToUploadFormat(edtEndTime!!.text.toString())!!)
+////            mFunctionMasterDetail.setVanueName(edtVenueName.text.toString().trim())
+////            mFunctionMasterDetail.setFunctionId(mFunctionId.toInt())
+////            mFunctionMasterDetail.setFunctionName(edtFunName.text.toString())
+//
+//            if (!mFunctionIdList.contains(mFunctionId.toInt())) {
+//                mFunctionDetailsList.add(mFunctionMasterDetail)
+//                mFunctionIdList.add(mFunctionId.toInt())
+//                SetAdapter()
+//                dialog.dismiss()
+//            } else {
+//                Toast.makeText(requireActivity(), "Please Select Another", Toast.LENGTH_LONG)
+//                    .show()
+//            }
+//        }
+//
+//        edtFunName.setText(mFuncationName)
+//        btnClose.setOnClickListener {
+//            dialog.dismiss()
+//        }
+//
+//        dialog.setCancelable(true)
+//        dialog.setContentView(view)
+//        dialog.show()
+//    }
+
+    private fun onBottomSheetDialog(
+        mEventFunctionId: Int,
+        mFuncationName: String,
+        mStartTime: String,
+        mEndTime: String,
+        VanueName: String,
+        Pax: String, IsEdite: Boolean
+    ) {
         val dialog = BottomSheetDialog(requireActivity(), R.style.BottomSheetDialogTheme)
         val view = layoutInflater.inflate(R.layout.item_bottomsheet_dialog, null)
 
@@ -111,6 +185,11 @@ class FunctionDetailsFragment : Fragment() {
         edtStartTime = view.findViewById(R.id.edtStartTime) as AppCompatEditText
         edtEndTime = view.findViewById(R.id.edtEndTime) as AppCompatEditText
 
+        edtStartTime!!.setText(CommonUtils.parseDateToViewUtcToLocal(mStartTime))
+        edtEndTime!!.setText(CommonUtils.parseDateToViewUtcToLocal(mEndTime))
+        edtVenueName!!.setText(VanueName)
+        edtPax!!.setText(Pax)
+
         edtStartTime!!.setOnClickListener {
             DateAndTimePickerDialog(true)
         }
@@ -122,20 +201,14 @@ class FunctionDetailsFragment : Fragment() {
         btnNext.setOnClickListener {
             var mFunctionMasterDetail: EventFunctionDetail? = null
             mFunctionMasterDetail = EventFunctionDetail(
-                0, edtPax.text.toString().toInt(),
-                parseDateToUploadFormat(edtStartTime!!.text.toString())!!,
-                parseDateToUploadFormat(edtEndTime!!.text.toString())!!,
+                eventFunctionId = mEventFunctionId.toInt(),
+                edtPax.text.toString().toInt(),
+                CommonUtils.parseDateToUploadFormat(edtStartTime!!.text.toString())!!,
+                CommonUtils.parseDateToUploadFormat(edtEndTime!!.text.toString())!!,
                 edtVenueName.text.toString().trim(),
-                mFunctionId.toInt(), edtFunName.text.toString()
+                mFunctionId.toInt(),
+                edtFunName.text.toString()
             )
-
-//            mFunctionMasterDetail.setEventFunctionId(0)
-//            mFunctionMasterDetail.setPax(edtPax.text.toString().toInt())
-//            mFunctionMasterDetail.setStarttime(parseDateToUploadFormat(edtStartTime!!.text.toString())!!)
-//            mFunctionMasterDetail.setEndtime(parseDateToUploadFormat(edtEndTime!!.text.toString())!!)
-//            mFunctionMasterDetail.setVanueName(edtVenueName.text.toString().trim())
-//            mFunctionMasterDetail.setFunctionId(mFunctionId.toInt())
-//            mFunctionMasterDetail.setFunctionName(edtFunName.text.toString())
 
             if (!mFunctionIdList.contains(mFunctionId.toInt())) {
                 mFunctionDetailsList.add(mFunctionMasterDetail)
@@ -143,8 +216,28 @@ class FunctionDetailsFragment : Fragment() {
                 SetAdapter()
                 dialog.dismiss()
             } else {
-                Toast.makeText(requireActivity(), "Please Select Another", Toast.LENGTH_LONG)
-                    .show()
+                if (IsEdite) {
+                    mFunctionDetailsList.forEachIndexed { index, eventFunctionDetail ->
+                        eventFunctionDetail.takeIf { it.eventFunctionId == mFunctionMasterDetail.eventFunctionId }
+                            ?.let {
+                                it.eventFunctionId = mFunctionMasterDetail.eventFunctionId
+                                it.pax = mFunctionMasterDetail.pax
+                                it.starttime = mFunctionMasterDetail.starttime
+                                it.endtime = mFunctionMasterDetail.endtime
+                                it.vanueName = mFunctionMasterDetail.vanueName
+                                it.functionId = mFunctionMasterDetail.functionId
+                                it.functionName = mFunctionMasterDetail.functionName
+                            }
+
+                        SetAdapter()
+                        dialog.dismiss()
+                    }
+
+                } else {
+                    Toast.makeText(
+                        requireActivity(), "Please Select Another", Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
 
@@ -218,7 +311,21 @@ class FunctionDetailsFragment : Fragment() {
 
                                         if (edtFunctionName?.text.toString().isNotEmpty())
                                             onBottomSheetDialog(
-                                                edtFunctionName?.text.toString().trim()
+                                                0,
+                                                edtFunctionName?.text.toString().trim(),
+                                                "${mEventAddRequest.eventDate} ${
+                                                    response.body()?.mData!!.functionMasterDetails?.get(
+                                                        position1 - 1
+                                                    )?.funStart!!
+                                                }",
+                                                "${mEventAddRequest.eventDate} ${
+                                                    response.body()?.mData!!.functionMasterDetails?.get(
+                                                        position1 - 1
+                                                    )?.funEnd!!
+                                                }",
+                                                "",
+                                                "",
+                                                false
                                             )
                                     }
 
@@ -314,6 +421,20 @@ class FunctionDetailsFragment : Fragment() {
                 mFunctionDetailsList.removeAt(position)
                 mFunctionIdList.removeAt(position)
                 SetAdapter()
+            }
+        })
+
+        mFunctionListAdapter!!.SetOnEditeclickListner(object : FunctionListAdapter.OnclickListner {
+            override fun onclick(position: Int) {
+                mFunctionId = mFunctionDetailsList[position].functionId.toString()
+                onBottomSheetDialog(
+                    mFunctionDetailsList[position].eventFunctionId,
+                    mFunctionDetailsList[position].functionName,
+                    mFunctionDetailsList[position].starttime,
+                    mFunctionDetailsList[position].endtime,
+                    mFunctionDetailsList[position].vanueName,
+                    mFunctionDetailsList[position].pax.toString(), true
+                )
             }
         })
     }

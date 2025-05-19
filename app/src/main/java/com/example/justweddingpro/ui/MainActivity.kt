@@ -8,7 +8,6 @@ import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -25,7 +24,7 @@ import com.example.justweddingpro.utils.Constants
 import com.example.justweddingpro.utils.PreferenceManager
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : BasedActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
     var doubleBackToExitPressedOnce = false
     var isHomeClick = false
@@ -311,6 +310,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             binding.txt2.setTextColor(resources.getColor(R.color.Color_Primery))
             binding.txt3.setTextColor(resources.getColor(R.color.Secondary_color))
             binding.txt4.setTextColor(resources.getColor(R.color.Secondary_color))
+        }
+
+        binding.mNavigationLayout.tvLogout.setOnClickListener {
+            mLogout()
         }
     }
 }

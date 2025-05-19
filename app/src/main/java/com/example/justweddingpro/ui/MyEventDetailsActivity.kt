@@ -47,6 +47,7 @@ class MyEventDetailsActivity : BasedActivity() {
 
     companion object {
         var mIsEdite: Boolean = true
+        var IsBackpress = false
     }
 
     override fun onResume() {
@@ -107,6 +108,7 @@ class MyEventDetailsActivity : BasedActivity() {
         var tvPlanning = view.findViewById<TextView>(R.id.tvPlanning)
         var tvMenuReport = view.findViewById<TextView>(R.id.tvMenuReport)
         var tvAssignFunc = view.findViewById<TextView>(R.id.tvAssignFunc)
+        var tvDelete = view.findViewById<TextView>(R.id.tvDelete)
 
         tvMenuReport.visibility = View.GONE
         tvAssignFunc.visibility = View.GONE
@@ -136,7 +138,62 @@ class MyEventDetailsActivity : BasedActivity() {
             )
         }
 
+        tvDelete.setOnClickListener {
+            popupWindow.dismiss()
+            CommonUtils.confirmShowDeleteDialog(this@MyEventDetailsActivity,
+                "Are you sure want to Delete?",
+                object : CommonUtils.Companion.OnDialogClickListener {
+                    override fun OnYesClick(dialog: Dialog) {
+                        mApiDeleteTable(
+                            PreferenceManager.getPref(
+                                Constants.Preference.Pref_EVENTId,
+                                ""
+                            )!!
+                        )
+                    }
+
+                    override fun OnNoClick(dialog: Dialog) {
+                    }
+
+                })
+        }
+
         return popupWindow
+    }
+
+    private fun mApiDeleteTable(EventId: String) {
+        CommonUtils.showProgressDialog(this@MyEventDetailsActivity)
+        MyApplication.getRestClient()?.API_GetDeleteEvent(EventId)
+            ?.enqueue(object : Callback<ResponseBase<TableListResponse>> {
+                override fun onResponse(
+                    call: Call<ResponseBase<TableListResponse>?>?,
+                    response: Response<ResponseBase<TableListResponse>?>
+                ) {
+                    CommonUtils.hideProgressDialog()
+                    if (response.isSuccessful) {
+                        if (response.body()?.mSuccess!!) {
+                            IsBackpress = true
+                            onBackPressed()
+                        } else {
+                            Log.d("Mytag", response.body()?.mError!!)
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@MyEventDetailsActivity,
+                            response.message(),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<ResponseBase<TableListResponse>?>, t: Throwable
+                ) {
+                    CommonUtils.hideProgressDialog()
+                    Log.d("MyTAG", "onFailure: " + t.message)
+                }
+            })
     }
 
     private fun mApiCalling() {

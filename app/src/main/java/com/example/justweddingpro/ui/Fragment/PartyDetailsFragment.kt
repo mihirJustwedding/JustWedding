@@ -168,6 +168,12 @@ class PartyDetailsFragment : Fragment() {
                                                     position1 - 1
                                                 )?.partyname
                                             )
+
+                                            edtContactNumber?.setText(
+                                                response.body()?.mData!!.partyAccountMasterDetails?.get(
+                                                    position1 - 1
+                                                )?.watsappno
+                                            )
                                             mPartyId =
                                                 response.body()?.mData!!.partyAccountMasterDetails?.get(
                                                     position1 - 1
@@ -184,6 +190,13 @@ class PartyDetailsFragment : Fragment() {
                                                                     i
                                                                 )?.partyname
                                                             )
+
+                                                            edtContactNumber?.setText(
+                                                                response.body()?.mData!!.partyAccountMasterDetails?.get(
+                                                                   i
+                                                                )?.watsappno
+                                                            )
+
                                                             mPartyId =
                                                                 response.body()?.mData!!.partyAccountMasterDetails?.get(
                                                                     i

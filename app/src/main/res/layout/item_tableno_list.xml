@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mTextview"
-    android:layout_width="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlMain"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fontFamily="@font/nunito_variable"
-    android:padding="@dimen/_10sdp"
-    android:textSize="@dimen/small_text" />
+    android:layout_marginBottom="@dimen/_10sdp"
+    android:background="@drawable/edittext_background"
+    android:padding="@dimen/_10sdp">
+
+
+    <LinearLayout
+        android:id="@+id/llmain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_variable"
+            android:text="Bjorn Lothbrok"
+            android:textSize="@dimen/Large_text" />
+
+    </LinearLayout>
+
+</RelativeLayout>

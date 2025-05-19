@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -58,6 +59,8 @@ class MenuItemAdapter(
 
         AddTotalItem()
 
+        holder.llAdd.setOnClickListener { holder.mAddIcon.performClick() }
+
         holder.mAddIcon.setOnClickListener {
             val mEventMenuPlanDetail = AddEventMenuPlanRequest.EventMenuPlanDetail()
             mEventMenuPlanDetail.setItemId(mList[position].getId())
@@ -103,7 +106,7 @@ class MenuItemAdapter(
             .placeholder(R.drawable.slider3)
             .into(holder.ivImageview)
 
-        holder.itemView.setOnClickListener {
+        holder.ivImageview.setOnClickListener {
             onclickListner.onclick(position)
         }
     }
@@ -124,6 +127,7 @@ class MenuItemAdapter(
         var tvProductName: TextView
         var tvRating: TextView
         var tvCal: TextView
+        var llAdd: LinearLayout
 
         init {
             ivImageview = itemView.findViewById(R.id.ivImageview)
@@ -131,6 +135,7 @@ class MenuItemAdapter(
             tvProductName = itemView.findViewById(R.id.tvProductName)
             tvRating = itemView.findViewById(R.id.tvRating)
             tvCal = itemView.findViewById(R.id.tvCal)
+            llAdd = itemView.findViewById(R.id.llAdd)
         }
     }
 }

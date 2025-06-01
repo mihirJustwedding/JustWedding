@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
 import com.example.justweddingpro.ClientUi.FeedbackActivity
 import com.example.justweddingpro.ManagerAndCaptainUi.OrderHistoryActivity
 import com.example.justweddingpro.R
@@ -231,6 +232,17 @@ class MainActivity : BasedActivity(), View.OnClickListener {
 //                binding.drawerLayout.closeDrawer(GravityCompat.START)
 //            }
 //        }
+
+        Glide.with(this@MainActivity)
+            .load(
+                PreferenceManager.getPref(
+                    Constants.Preference.PREF_IMAGEURL,
+                    ""
+                )
+            )
+            .placeholder(R.drawable.slider3)
+            .into(binding.mNavigationLayout.cimgView)
+
         binding.mNavigationLayout.tvName.text = PreferenceManager.getPref(
             Constants.Preference.Pref_UserName,
             ""

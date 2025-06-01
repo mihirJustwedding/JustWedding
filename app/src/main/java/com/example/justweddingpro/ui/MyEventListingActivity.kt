@@ -137,9 +137,14 @@ class MyEventListingActivity : AppCompatActivity() {
         var tvMenuReport = view.findViewById<TextView>(R.id.tvMenuReport)
         var tvAssignFunc = view.findViewById<TextView>(R.id.tvAssignFunc)
         var tvDelete = view.findViewById<TextView>(R.id.tvDelete)
+        var tvPdf = view.findViewById<TextView>(R.id.tvPdf)
+        var tvAgency = view.findViewById<TextView>(R.id.tvAgency)
 
-        tvMenuReport.visibility = View.GONE
+        BasedActivity.mEventId = mEventId
+
         tvAssignFunc.visibility = View.GONE
+        tvPdf.visibility = View.GONE
+        tvAgency.visibility = View.GONE
 
         tvView.setOnClickListener {
             popupWindow.dismiss()
@@ -189,6 +194,16 @@ class MyEventListingActivity : AppCompatActivity() {
                     }
 
                 })
+        }
+
+        tvMenuReport.setOnClickListener {
+            popupWindow.dismiss()
+            startActivity(
+                Intent(
+                    this@MyEventListingActivity,
+                    PDFViewerActivity::class.java
+                ).putExtra("isevent", "1")
+            )
         }
 
         return popupWindow

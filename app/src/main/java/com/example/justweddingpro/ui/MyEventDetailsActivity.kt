@@ -109,9 +109,10 @@ class MyEventDetailsActivity : BasedActivity() {
         var tvMenuReport = view.findViewById<TextView>(R.id.tvMenuReport)
         var tvAssignFunc = view.findViewById<TextView>(R.id.tvAssignFunc)
         var tvDelete = view.findViewById<TextView>(R.id.tvDelete)
+        var tvPdf = view.findViewById<TextView>(R.id.tvPdf)
 
-        tvMenuReport.visibility = View.GONE
         tvAssignFunc.visibility = View.GONE
+        tvPdf.visibility = View.GONE
 
         tvEdite.setOnClickListener {
             popupWindow.dismiss()
@@ -156,6 +157,16 @@ class MyEventDetailsActivity : BasedActivity() {
                     }
 
                 })
+        }
+
+        tvMenuReport.setOnClickListener {
+            popupWindow.dismiss()
+            startActivity(
+                Intent(
+                    this@MyEventDetailsActivity,
+                    PDFViewerActivity::class.java
+                ).putExtra("isevent", "1")
+            )
         }
 
         return popupWindow
@@ -215,6 +226,10 @@ class MyEventDetailsActivity : BasedActivity() {
                         if (response.body()?.mData != null) {
                             var mEventDetailsResponse =
                                 response.body()!!.mData!!.getEventMasterDetails()!![0]
+
+                            mEventId =
+                                mEventDetailsResponse?.eventId!!.toString()
+
 
                             binding.tvPartyName.text =
                                 "Party name: ${mEventDetailsResponse?.partyName}"

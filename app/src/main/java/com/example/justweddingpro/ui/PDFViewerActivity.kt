@@ -2,6 +2,7 @@ package com.example.justweddingpro.ui
 
 import android.Manifest
 import android.app.DownloadManager
+import android.content.ContentValues
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -9,6 +10,7 @@ import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.webkit.CookieManager
@@ -18,6 +20,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.example.crmapplication.MyApplication
 import com.example.justweddingpro.Response.TableListResponse
@@ -30,6 +33,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.net.URI
+import java.net.URL
 
 
 class PDFViewerActivity : BasedActivity() {
@@ -87,16 +91,42 @@ class PDFViewerActivity : BasedActivity() {
         downloadManager.enqueue(request)
 
         Toast.makeText(this, "Download started...", Toast.LENGTH_SHORT).show()
+
+        saveFileUsingMediaStore(url, "${mFunctionName}_MenuReport")
     }
 
+    private fun saveFileUsingMediaStore(url: String, fileName: String) {
+        val contentValues = ContentValues().apply {
+            put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
+            put(MediaStore.MediaColumns.MIME_TYPE, "pdf")
+            put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
+        }
+        val resolver = this.contentResolver
+        val uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
+        if (uri != null) {
+            URL(url).openStream().use { input ->
+                resolver.openOutputStream(uri).use { output ->
+                    input.copyTo(output!!, DEFAULT_BUFFER_SIZE)
+                }
+            }
+        }
+    }
+
+
     private fun APIgetPdf() {
+        var IsEvent = ""
+        if (intent.getStringExtra("isevent") != null) {
+            IsEvent = "-1"
+        } else {
+            IsEvent = mFunctionId
+        }
         CommonUtils.showProgressDialog(this@PDFViewerActivity)
         MyApplication.getRestClient()
             ?.API_getPdfReport(
                 PreferenceManager.getPref(
                     Constants.Preference.PREF_CLIENT_USERID,
                     ""
-                )!!, mEventId, mFunctionId
+                )!!, mEventId, IsEvent
             )?.enqueue(object :
                 Callback<ResponseBase<TableListResponse>> {
                 override fun onResponse(

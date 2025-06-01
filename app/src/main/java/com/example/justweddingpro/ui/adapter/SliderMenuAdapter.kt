@@ -1,16 +1,15 @@
 package com.example.justweddingpro.ui.adapter
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.justweddingpro.R
 import com.example.justweddingpro.Response.MenuCategoryListResponse
+import de.hdodenhof.circleimageview.CircleImageView
 
 class SliderMenuAdapter(
     var mcontext: Context,
@@ -38,7 +37,7 @@ class SliderMenuAdapter(
     var row_index = -1
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (row_index == position) {
-            holder.imgBackground.setBackgroundColor(mcontext.getColor(R.color.Color_Primery))
+            holder.imgMenu.borderColor = (mcontext.getColor(R.color.Color_Primery))
 //            holder.ivImageview.imageTintList =
 //                ColorStateList.valueOf(
 //                    mcontext.resources.getColor(
@@ -47,7 +46,7 @@ class SliderMenuAdapter(
 //                )
         } else {
             if ((row_index == -1) && (position == 0)) {
-                holder.imgBackground.setBackgroundColor(mcontext.getColor(R.color.Color_Primery))
+                holder.imgMenu.borderColor = (mcontext.getColor(R.color.Color_Primery))
 //                holder.ivImageview.imageTintList =
 //                    ColorStateList.valueOf(
 //                        mcontext.resources.getColor(
@@ -55,7 +54,7 @@ class SliderMenuAdapter(
 //                        )
 //                    )
             } else {
-                holder.imgBackground.setBackgroundColor(mcontext.getColor(R.color.white))
+                holder.imgMenu.borderColor = (mcontext.getColor(R.color.white))
 //                holder.ivImageview.setBackgroundColor(mcontext.getColor(R.color.Color_Primery))
 //                holder.ivImageview.imageTintList =
 //                    ColorStateList.valueOf(
@@ -71,8 +70,8 @@ class SliderMenuAdapter(
 
         Glide.with(mcontext)
             .load(mList[position].menuImage)
-            .placeholder(R.drawable.main_iconfor_menu)
-            .into(holder.ivImageview)
+            .placeholder(R.drawable.slider3)
+            .into(holder.imgMenu)
 
         holder.itemView.setOnClickListener {
             onclickListner.onclick(position)
@@ -86,15 +85,16 @@ class SliderMenuAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var ivImageview: ImageView
-        var imgBackground: ImageView
+        var imgMenu: CircleImageView
+
+        //        var imgBackground: ImageView
         var tvCatName: TextView
         var tvCount: TextView
 
 
         init {
-            ivImageview = itemView.findViewById(R.id.imgMenu)
-            imgBackground = itemView.findViewById(R.id.imgBackground)
+            imgMenu = itemView.findViewById(R.id.imgMenu)
+//            imgBackground = itemView.findViewById(R.id.imgBackground)
             tvCatName = itemView.findViewById(R.id.tvCatName)
             tvCount = itemView.findViewById(R.id.tvCount)
         }

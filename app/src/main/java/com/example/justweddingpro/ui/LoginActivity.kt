@@ -69,6 +69,11 @@ class LoginActivity : AppCompatActivity() {
 //                        )
 
                         PreferenceManager.setPref(
+                            Constants.Preference.PREF_IMAGEURL,
+                            response.body()!!.mData!!.clientUserDetails!![0].imageUrl!!
+                        )
+
+                        PreferenceManager.setPref(
                             Constants.Preference.Pref_Category,
                             response.body()!!.mData!!.clientUserDetails!![0].category!!
                         )

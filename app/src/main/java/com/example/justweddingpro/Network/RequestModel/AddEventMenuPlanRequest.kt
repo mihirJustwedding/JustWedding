@@ -131,6 +131,18 @@ class AddEventMenuPlanRequest {
         @Expose
         private var menuName: String? = null
 
+        @SerializedName("itemslogan")
+        @Expose
+        private var itemslogan: String? = null
+
+        fun getItemslogan(): String? {
+            return itemslogan
+        }
+
+        fun setItemslogan(itemslogan: String?) {
+            this.itemslogan = itemslogan
+        }
+
         fun getEventmenudetailsId(): Int? {
             return eventmenudetailsId
         }

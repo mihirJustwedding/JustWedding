@@ -24,6 +24,7 @@ object Constants {
         const val Pref_FunctionName = "Pref_FunctionName"
         const val Pref_EVENTId = "Pref_EVENTId"
         const val PREF_CLIENTID = "PREF_CLIENTID"
+        const val PREF_IMAGEURL = "PREF_IMAGEURL"
 
         const val IS_LOGIN = "IS_LOGIN"
         const val IS_TUTORIAL = "IS_TUTORIAL"

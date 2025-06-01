@@ -26,6 +26,7 @@ class AddItemAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.tvProductName.setText(mList[position].getItemName())
+        holder.tvProductSlogen.setText(mList[position].getItemslogan())
         holder.imgRemove.setOnClickListener {
             mRemoveItem(position)
         }
@@ -44,11 +45,13 @@ class AddItemAdapter(
         var mProfileimage: ImageView
         var imgRemove: ImageView
         var tvProductName: TextView
+        var tvProductSlogen: TextView
 
         init {
             mProfileimage = itemView.findViewById(R.id.mProfileimage)
             imgRemove = itemView.findViewById(R.id.imgRemove)
             tvProductName = itemView.findViewById(R.id.tvProductName)
+            tvProductSlogen = itemView.findViewById(R.id.tvProductSlogen)
         }
     }
 }

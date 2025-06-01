@@ -47,5 +47,9 @@ class LoginResponse {
         @SerializedName("emailId")
         @Expose
         var emailId: String? = null
+
+        @SerializedName("imgUrl")
+        @Expose
+        var imageUrl: String? = null
     }
 }

@@ -252,8 +252,8 @@ class MenuActivity : AppCompatActivity() {
         val btnClose = view.findViewById(R.id.imgClose) as ImageView
         val ivImageview = view.findViewById(R.id.ivImageview) as ImageView
         val tvProductName = view.findViewById(R.id.tvProductName) as TextView
-        val tvRating = view.findViewById(R.id.tvRating) as TextView
-        val tvCal = view.findViewById(R.id.tvCal) as TextView
+//        val tvRating = view.findViewById(R.id.tvRating) as TextView
+//        val tvCal = view.findViewById(R.id.tvCal) as TextView
         val tvSlogan = view.findViewById(R.id.tvSlogan) as TextView
 
         Glide.with(this@MenuActivity)
